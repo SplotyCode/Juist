@@ -1,8 +1,6 @@
 package group.doppeld.juist.parser.tokenizer;
 
-public enum TokenizeState {
+public abstract class TokenizeState {
 
-    DEFAULT,
-    COMMENT
-
+    public abstract void handleChar(Tokenizer tokenizer);
 }
