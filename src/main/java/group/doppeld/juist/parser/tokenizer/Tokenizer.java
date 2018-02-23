@@ -33,6 +33,10 @@ public class Tokenizer {
             for(TokenizerState state : unlocked){
                 updateLock();
                 state.handleChar(this);
+                if(state.isSkip()){
+                    state.setSkip(false);
+                    break;
+                }
             }
             index++;    
         }
