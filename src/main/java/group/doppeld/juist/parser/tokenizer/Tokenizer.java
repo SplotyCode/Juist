@@ -12,8 +12,10 @@ public class Tokenizer {
     private char cChar;
 
     //States
-    TokenizeStates before = TokenizeStates.DEFAULT;
-    TokenizeStates state = TokenizeStates.DEFAULT;
+    private TokenizeStates before = TokenizeStates.DEFAULT;
+    private TokenizeStates state = TokenizeStates.DEFAULT;
+    
+    private ArrayList<TokenizerState> unlocked = new ArrayList<>();
 
     public Tokenizer(final String source){
         this.source = source;
@@ -28,10 +30,28 @@ public class Tokenizer {
     public void process(){
         while (index < source.length()){
             cChar = source.charAt(index);
-            state.get().handleChar(this);
-            for(TokenizeState state : state.getActive())
+            for(TokenizerState state : unlocked){
+                updateLock();
                 state.handleChar(this);
+            }
             index++;    
+        }
+    }
+    
+    private updateLock(){
+        unlocked.clear();
+        if(state.get().isCancelOthers()){
+            unlock.add(state.get());
+        }else{
+            for(TokenizeState state : state.getActive())
+                if(state.isCancelOthers){
+                    unlocked.add(state);
+                    break;
+                }
+        }
+        if(unlocked.isEmpty()){
+            unlock.add(state.get());
+            unlock.addAll(state.getActive());
         }
     }
 
