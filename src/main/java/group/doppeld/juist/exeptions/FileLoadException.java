@@ -1,4 +1,4 @@
-package group.doppeld.juist.fileload;
+package group.doppeld.juist.exeptions;
 
 import java.io.IOException;
 

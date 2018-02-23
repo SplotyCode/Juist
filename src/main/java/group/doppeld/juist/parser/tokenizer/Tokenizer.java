@@ -1,5 +1,8 @@
 package group.doppeld.juist.parser.tokenizer;
 
+import group.doppeld.juist.exeptions.UnexpectedCharExeption;
+import group.doppeld.juist.util.ListUtil;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -11,6 +14,7 @@ public class Tokenizer {
     //The Current Char
     private int index;
     private char cChar;
+    private int line = 0;
 
     //States
     private TokenizeStates before = TokenizeStates.DEFAULT;
@@ -31,21 +35,30 @@ public class Tokenizer {
     public void process(){
         while (index < source.length()){
             cChar = source.charAt(index);
-            for(TokenizeState state : unlocked){
+            boolean withspace = cChar == '\n' || cChar == '\t' || cChar == ' ';
+            updateLock();
+            for(TokenizeState state : new ArrayList<>(unlocked)){
                 updateLock();
-                state.handleChar(this);
+                if(!unlocked.contains(state)) continue;
+                try {
+                    if(!(withspace && state.isIgnoreWithspace())) state.handleChar(this);
+                } catch (UnexpectedCharExeption ex) {
+                    ex.printStackTrace();
+                    break;
+                }
                 if(state.isSkip()){
                     state.setSkip(false);
                     break;
                 }
             }
+            if(cChar == '\n') line++;
             index++;    
         }
     }
     
     private void updateLock(){
         unlocked.clear();
-        if(state.get().isCancelOthers()){
+        if(state.get() != null && state.get().isCancelOthers()){
             unlocked.add(state.get());
         }else{
             for(TokenizeState state : state.getActive())
@@ -55,7 +68,7 @@ public class Tokenizer {
                 }
         }
         if(unlocked.isEmpty()){
-            unlocked.add(state.get());
+            if(state.get() != null) unlocked.add(state.get());
             Collections.addAll(unlocked, state.getActive());
         }
     }
@@ -106,5 +119,9 @@ public class Tokenizer {
 
     public void setState(TokenizeStates state) {
         this.state = state;
+    }
+
+    public int getLine() {
+        return line;
     }
 }

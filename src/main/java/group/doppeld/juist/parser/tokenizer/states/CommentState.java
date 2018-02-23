@@ -12,12 +12,14 @@ public class CommentState extends TokenizeState {
     public void handleChar(Tokenizer tokenizer) {
         if(tokenizer.getState() == TokenizeStates.COMMENT){
             if(isExitComment(tokenizer)) tokenizer.setState(tokenizer.getBefore());
+            setCancelOthers(false);
             return;
         }
 
         if(isNewComment(tokenizer)){
             tokenizer.setBefore(tokenizer.getState());
             tokenizer.setState(TokenizeStates.COMMENT);
+            setCancelOthers(true);
         }
     }
 

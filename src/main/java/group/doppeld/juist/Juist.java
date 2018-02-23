@@ -1,7 +1,7 @@
 package group.doppeld.juist;
 
 import group.doppeld.juist.config.StartArguments;
-import group.doppeld.juist.fileload.FileLoadException;
+import group.doppeld.juist.exeptions.FileLoadException;
 import group.doppeld.juist.fileload.JuistFileLoader;
 import group.doppeld.juist.parser.Parser;
 
