@@ -3,7 +3,6 @@ package group.doppeld.juist.fileload;
 import com.sun.istack.internal.Nullable;
 import group.doppeld.juist.Constants;
 import group.doppeld.juist.util.FileUtil;
-
 import java.io.File;
 import java.io.IOException;
 
