@@ -31,6 +31,7 @@ public class Tokenizer {
             state.get().handleChar(this);
             for(TokenizeState state : state.getActive())
                 state.handleChar(this);
+            index++;    
         }
     }
 
