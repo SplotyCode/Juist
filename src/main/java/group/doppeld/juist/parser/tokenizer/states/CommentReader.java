@@ -1,10 +1,10 @@
 package group.doppeld.juist.parser.tokenizer.states;
 
-import group.doppeld.juist.parser.tokenizer.TokenizeState;
+import group.doppeld.juist.parser.tokenizer.TokenizeReader;
 import group.doppeld.juist.parser.tokenizer.TokenizeStates;
 import group.doppeld.juist.parser.tokenizer.Tokenizer;
 
-public class CommentState extends TokenizeState {
+public class CommentReader extends TokenizeReader {
 
     private boolean advaned = false;
 

@@ -2,12 +2,12 @@ package group.doppeld.juist.parser.tokenizer.states;
 
 import group.doppeld.juist.exeptions.InternalException;
 import group.doppeld.juist.exeptions.UnexpectedCharExeption;
-import group.doppeld.juist.parser.tokenizer.TokenizeState;
+import group.doppeld.juist.parser.tokenizer.TokenizeReader;
 import group.doppeld.juist.parser.tokenizer.TokenizeStates;
 import group.doppeld.juist.parser.tokenizer.Tokenizer;
 import group.doppeld.juist.parser.tokenizer.tokens.VariableToken;
 
-public class ValState extends TokenizeState {
+public class ValReader extends TokenizeReader {
 
     public enum SubState {
 

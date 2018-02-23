@@ -1,7 +1,6 @@
 package group.doppeld.juist.parser.tokenizer;
 
 import group.doppeld.juist.exeptions.UnexpectedCharExeption;
-import group.doppeld.juist.util.ListUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,7 +19,7 @@ public class Tokenizer {
     private TokenizeStates before = TokenizeStates.DEFAULT;
     private TokenizeStates state = TokenizeStates.DEFAULT;
     
-    private ArrayList<TokenizeState> unlocked = new ArrayList<>();
+    private ArrayList<TokenizeReader> unlocked = new ArrayList<>();
 
     public Tokenizer(final String source){
         this.source = source;
@@ -37,7 +36,7 @@ public class Tokenizer {
             cChar = source.charAt(index);
             boolean withspace = cChar == '\n' || cChar == '\t' || cChar == ' ';
             updateLock();
-            for(TokenizeState state : new ArrayList<>(unlocked)){
+            for(TokenizeReader state : new ArrayList<>(unlocked)){
                 updateLock();
                 if(!unlocked.contains(state)) continue;
                 try {
@@ -61,7 +60,7 @@ public class Tokenizer {
         if(state.get() != null && state.get().isCancelOthers()){
             unlocked.add(state.get());
         }else{
-            for(TokenizeState state : state.getActive())
+            for(TokenizeReader state : state.getActive())
                 if(state.isCancelOthers()){
                     unlocked.add(state);
                     break;

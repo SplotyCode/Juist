@@ -1,28 +1,24 @@
 package group.doppeld.juist.parser.tokenizer;
 
-import group.doppeld.juist.parser.tokenizer.states.CommentState;
-import group.doppeld.juist.parser.tokenizer.states.StringValueState;
-import group.doppeld.juist.parser.tokenizer.states.ValState;
-
 public enum TokenizeStates {
 
-    DEFAULT(null, new CommentState(), new ValState()),
-    COMMENT(new CommentState()),
-    VALUE(null, new StringValueState());
+    DEFAULT(null, TokenizeConstants.COMMENT_READER, TokenizeConstants.VAL_READER),
+    COMMENT(TokenizeConstants.COMMENT_READER),
+    VALUE(null, TokenizeConstants.STRING_VALUE_READER);
 
-    private final TokenizeState state;
-    private final TokenizeState[] active;
+    private final TokenizeReader state;
+    private final TokenizeReader[] active;
 
-    TokenizeStates(TokenizeState state, TokenizeState... active){
+    TokenizeStates(TokenizeReader state, TokenizeReader... active){
         this.state = state;
         this.active = active;
     }
 
-    public TokenizeState[] getActive() {
+    public TokenizeReader[] getActive() {
         return active;
     }
 
-    public TokenizeState get() {
+    public TokenizeReader get() {
         return state;
     }
 }

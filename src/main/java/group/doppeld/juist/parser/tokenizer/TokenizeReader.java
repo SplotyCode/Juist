@@ -2,16 +2,16 @@ package group.doppeld.juist.parser.tokenizer;
 
 import group.doppeld.juist.exeptions.UnexpectedCharExeption;
 
-public abstract class TokenizeState {
+public abstract class TokenizeReader {
     
     private boolean cancelOthers = false;
     private boolean skip = false;
 
     private boolean ignoreWithspace = false;
 
-    public TokenizeState(){}
+    public TokenizeReader(){}
 
-    public TokenizeState(boolean ignoreWithspace){
+    public TokenizeReader(boolean ignoreWithspace){
         this.ignoreWithspace = ignoreWithspace;
     }
     
