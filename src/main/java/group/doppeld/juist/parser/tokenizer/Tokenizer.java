@@ -1,6 +1,7 @@
 package group.doppeld.juist.parser.tokenizer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Tokenizer {
 
@@ -15,7 +16,7 @@ public class Tokenizer {
     private TokenizeStates before = TokenizeStates.DEFAULT;
     private TokenizeStates state = TokenizeStates.DEFAULT;
     
-    private ArrayList<TokenizerState> unlocked = new ArrayList<>();
+    private ArrayList<TokenizeState> unlocked = new ArrayList<>();
 
     public Tokenizer(final String source){
         this.source = source;
@@ -30,7 +31,7 @@ public class Tokenizer {
     public void process(){
         while (index < source.length()){
             cChar = source.charAt(index);
-            for(TokenizerState state : unlocked){
+            for(TokenizeState state : unlocked){
                 updateLock();
                 state.handleChar(this);
                 if(state.isSkip()){
@@ -42,20 +43,20 @@ public class Tokenizer {
         }
     }
     
-    private updateLock(){
+    private void updateLock(){
         unlocked.clear();
         if(state.get().isCancelOthers()){
-            unlock.add(state.get());
+            unlocked.add(state.get());
         }else{
             for(TokenizeState state : state.getActive())
-                if(state.isCancelOthers){
+                if(state.isCancelOthers()){
                     unlocked.add(state);
                     break;
                 }
         }
         if(unlocked.isEmpty()){
-            unlock.add(state.get());
-            unlock.addAll(state.getActive());
+            unlocked.add(state.get());
+            Collections.addAll(unlocked, state.getActive());
         }
     }
 
