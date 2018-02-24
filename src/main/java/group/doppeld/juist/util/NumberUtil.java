@@ -1,6 +1,6 @@
 package group.doppeld.juist.util;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public final class NumberUtil {
 

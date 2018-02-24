@@ -6,7 +6,11 @@ public class VariableValueToken<T> extends Token {
 
     public enum VariableType {
 
-        STRING
+        STRING,
+        DOUBLE,
+        FLOAT,
+        LONG,
+        INTEGER
 
     }
 

@@ -1,6 +1,6 @@
 package group.doppeld.juist.parser.tokenizer;
 
-import group.doppeld.juist.exeptions.UnexpectedCharExeption;
+import group.doppeld.juist.exeptions.UnexpectedCharException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,6 +21,8 @@ public class Tokenizer {
     
     private ArrayList<TokenizeReader> unlocked = new ArrayList<>();
 
+    private Updater updater = () -> {};
+
     public Tokenizer(final String source){
         this.source = source;
         tokens = new ArrayList<>();
@@ -34,14 +36,14 @@ public class Tokenizer {
     public void process(){
         while (index < source.length()){
             cChar = source.charAt(index);
-            boolean withspace = cChar == '\n' || cChar == '\t' || cChar == ' ';
+            boolean whitespace = cChar == '\n' || cChar == '\t' || cChar == ' ';
             updateLock();
             for(TokenizeReader state : new ArrayList<>(unlocked)){
                 updateLock();
                 if(!unlocked.contains(state)) continue;
                 try {
-                    if(!(withspace && state.isIgnoreWithspace())) state.handleChar(this);
-                } catch (UnexpectedCharExeption ex) {
+                    if(!(whitespace && state.isIgnoreWhitespace())) state.handleChar(this);
+                } catch (UnexpectedCharException ex) {
                     ex.printStackTrace();
                     break;
                 }
@@ -51,7 +53,8 @@ public class Tokenizer {
                 }
             }
             if(cChar == '\n') line++;
-            index++;    
+            index++;
+            updater.onReadNextChar();
         }
     }
     
@@ -112,15 +115,24 @@ public class Tokenizer {
         return state;
     }
 
-    public void setBefore(TokenizeStates before) {
-        this.before = before;
-    }
-
     public void setState(TokenizeStates state) {
+        before = this.state;
         this.state = state;
     }
 
     public int getLine() {
         return line;
+    }
+
+    public void setUpdater(Updater updater) {
+        this.updater = updater;
+    }
+
+    public Updater getUpdater() {
+        return updater;
+    }
+
+    public interface Updater {
+        void onReadNextChar();
     }
 }

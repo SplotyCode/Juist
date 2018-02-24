@@ -17,7 +17,6 @@ public class CommentReader extends TokenizeReader {
         }
 
         if(isNewComment(tokenizer)){
-            tokenizer.setBefore(tokenizer.getState());
             tokenizer.setState(TokenizeStates.COMMENT);
             setCancelOthers(true);
         }

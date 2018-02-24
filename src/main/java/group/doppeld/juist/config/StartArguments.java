@@ -28,7 +28,7 @@ public class StartArguments {
         if(version){
             juist.log("Juist " + Constants.VERSION);
             juist.log("Java " + System.getProperty("java.version"));
-            juist.log("Running on " + System.getProperty("os.name") + " " + System.getProperty("os.version") + " (" + System.getProperty("os.arch"));
+            juist.log("Running on " + System.getProperty("os.name") + " " + System.getProperty("os.version") + " (" + System.getProperty("os.arch") + ")");
             juist.stop();
         }
     }

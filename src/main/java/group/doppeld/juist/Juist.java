@@ -27,11 +27,13 @@ public class Juist implements Runnable {
         instance = this;
         startArguments.handle(this);
         parser = new Parser();
-        try {
-            parser.parse(new JuistFileLoader().load(startArguments.getFile()));
-        } catch (FileLoadException ex) {
-            ex.printStackTrace();
-        }
+        if(startArguments.getFile() != null) {
+            try {
+                parser.parse(new JuistFileLoader().load(startArguments.getFile()));
+            } catch (FileLoadException ex) {
+                ex.printStackTrace();
+            }
+        }else  log("What should i do?");
     }
 
     public void log(String message){

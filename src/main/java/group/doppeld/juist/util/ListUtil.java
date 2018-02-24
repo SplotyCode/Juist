@@ -16,4 +16,18 @@ public final class ListUtil {
         Collections.sort(two);
         return one.equals(two);
     }
+
+    public static <T> boolean containsArray(T find, T[] array) {
+        for (T current : array)
+            if (current == find)
+                return true;
+        return false;
+    }
+
+    public static boolean containsArray(char find, char[] array) {
+        for (char current : array)
+            if (current == find)
+                return true;
+        return false;
+    }
 }

@@ -9,6 +9,9 @@ public enum TokenizeStates {
     private final TokenizeReader state;
     private final TokenizeReader[] active;
 
+    //Not really a listener
+    private CloseListener firstOnCloseListener = null;
+
     TokenizeStates(TokenizeReader state, TokenizeReader... active){
         this.state = state;
         this.active = active;
@@ -20,5 +23,13 @@ public enum TokenizeStates {
 
     public TokenizeReader get() {
         return state;
+    }
+
+    public CloseListener getFirstOnCloseListener() {
+        return firstOnCloseListener;
+    }
+
+    public void setFirstOnCloseListener(CloseListener firstOnCloseListener) {
+        this.firstOnCloseListener = firstOnCloseListener;
     }
 }

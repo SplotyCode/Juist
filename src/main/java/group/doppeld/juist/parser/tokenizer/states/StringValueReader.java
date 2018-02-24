@@ -1,7 +1,6 @@
 package group.doppeld.juist.parser.tokenizer.states;
 
 import group.doppeld.juist.parser.tokenizer.TokenizeReader;
-import group.doppeld.juist.parser.tokenizer.TokenizeStates;
 import group.doppeld.juist.parser.tokenizer.Tokenizer;
 import group.doppeld.juist.parser.tokenizer.tokens.VariableValueToken;
 
@@ -19,7 +18,10 @@ public class StringValueReader extends TokenizeReader {
                 tokenizer.getTokens().add(new VariableValueToken<>(VariableValueToken.VariableType.STRING, string));
                 string = "";
                 setCancelOthers(false);
-            } else string += tokenizer.getcChar();
+            } else {
+                locket = false;
+                string += tokenizer.getcChar();
+            }
         }else if(tokenizer.getcChar() == '"') {
             setCancelOthers(true);
         }
