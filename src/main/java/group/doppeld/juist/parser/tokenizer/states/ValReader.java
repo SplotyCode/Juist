@@ -30,63 +30,84 @@ public class ValReader extends TokenizeReader {
     private String type = "";
     private VariableValueToken value;
 
+    private void setState(SubState state){
+        this.state = state;
+        //System.out.println("Change to " + state.name() + " at '" + tokenizer.getcChar() + "'");
+    }
+
+    private Tokenizer tokenizer;
+    private TokenizeStates before;
+
     @Override
     public void handleChar(Tokenizer tokenizer) throws UnexpectedCharException {
+        //this.tokenizer = tokenizer;
         if(isCancelOthers()){
+            //System.out.println("Reading '" + tokenizer.getcChar() + "'");
             switch (state){
                 case BEFORENAME:{
-                    state = SubState.NAME;
+                    setState(SubState.NAME);
+                    name += tokenizer.getcChar();
                     setIgnoreWhitespace(false);
+                    break;
                 }case NAME:{
                     if(tokenizer.getcChar() == ' '){
                         setIgnoreWhitespace(true);
-                        state = SubState.SPLIT;
+                        setState(SubState.SPLIT);
                     }else if(tokenizer.getcChar() == ':'){
                         setIgnoreWhitespace(true);
-                        state = SubState.SPLITDONE;
+                        setState(SubState.SPLITDONE);
                     }else{
                         name += tokenizer.getcChar();
                     }
                     break;
                 } case SPLIT:{
-                    if(tokenizer.getcChar() == ':') state = SubState.SPLITDONE;
+                    if(tokenizer.getcChar() == ':') setState(SubState.SPLITDONE);
                     else throw new UnexpectedCharException(tokenizer, "Expected ':' or some withespace");
+                    break;
                 } case SPLITDONE:{
                     setIgnoreWhitespace(false);
-                    state = SubState.TYPE;
+                    setState(SubState.TYPE);
+                    type += tokenizer.getcChar();
+                    break;
                 } case TYPE:{
                     if(tokenizer.getcChar() == ' '){
-                        state = SubState.EQUALSSPLIT;
+                        setState(SubState.EQUALSSPLIT);
                     }else if(tokenizer.getcChar() == '='){
-                        state = SubState.EQUALSSPLITDONE;
+                        setState(SubState.EQUALSSPLITDONE);
                     }else{
                         type += tokenizer.getcChar();
                     }
+                    break;
                 } case EQUALSSPLIT: {
-                    if(tokenizer.getcChar() == '=') state = SubState.EQUALSSPLITDONE;
+                    if(tokenizer.getcChar() == '=') setState(SubState.EQUALSSPLITDONE);
                     else throw new UnexpectedCharException(tokenizer, "Expected '=' or some withespace");
+                    break;
                 } case EQUALSSPLITDONE: {
                     setIgnoreWhitespace(false);
                     setCancelOthers(false);
+                    before = tokenizer.getBefore();
                     tokenizer.setState(TokenizeStates.VALUE);
                     TokenizeStates.VALUE.setFirstOnCloseListener((data) -> {
                         tokenizer.setState(tokenizer.getBefore());
                         setCancelOthers(true);
                         setIgnoreWhitespace(true);
-                        state = SubState.END;
+                        setState(SubState.END);
                         value = (VariableValueToken) data[0];
                     });
+                    break;
                 }case END:{
                     if(tokenizer.getcChar() ==  ';'){
                         //shutdown
+                        System.out.println(type + " " + name + " " + value.getType().name() + " " + value.getContent());
                         tokenizer.getTokens().add(new VariableToken(type, name, value));
                         name = "";
                         value = null;
                         type = "";
                         setCancelOthers(false);
                         setIgnoreWhitespace(false);
-                        tokenizer.setState(tokenizer.getBefore());
+                        tokenizer.setState(before);
                     }else throw new UnexpectedCharException(tokenizer, "Don't you just wont to end this variable?");
+                    break;
                 }case IDLE: {
                     throw new InternalException("SubState == Idle?? I am working!");
                 } default: throw new InternalError("I did't know that i have a SubState named '" + state + "'!");
@@ -94,7 +115,7 @@ public class ValReader extends TokenizeReader {
         }else if(tokenizer.isNextSkip("val")){
             setCancelOthers(true);
             setIgnoreWhitespace(true);
-            state = SubState.BEFORENAME;
+            setState(SubState.BEFORENAME);
         }
     }
 }

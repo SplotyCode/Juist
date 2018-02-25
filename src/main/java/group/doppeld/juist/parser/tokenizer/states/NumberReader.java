@@ -6,14 +6,12 @@ import group.doppeld.juist.parser.tokenizer.Tokenizer;
 import group.doppeld.juist.parser.tokenizer.tokens.VariableValueToken;
 import group.doppeld.juist.util.ListUtil;
 
-import java.util.Collections;
-
 public class NumberReader extends TokenizeReader {
 
 
-    private char[] startChars = new char[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    private char[] startChars = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
-    private char[] inNumberChars = new char[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, '.'};
+    private char[] inNumberChars = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'};
 
     private char[] endChars = new char[]{'d', 'f', 'l'};
 
@@ -31,7 +29,7 @@ public class NumberReader extends TokenizeReader {
         return number.contains(".")?VariableValueToken.VariableType.DOUBLE: VariableValueToken.VariableType.INTEGER;
     }
 
-    private String content;
+    private String content = "";
     private boolean hasFloatingPoint = false;
 
     @Override
@@ -43,20 +41,23 @@ public class NumberReader extends TokenizeReader {
                     if(hasFloatingPoint) throw new UnexpectedCharException(tokenizer, "What do you want to do with that point we already have one???");
                     else hasFloatingPoint = true;
                 }
-            }
-            else if(ListUtil.containsArray(tokenizer.getcChar(), endChars)) {
-                tokenizer.getTokens().add(new VariableValueToken<>(getVariableTypebyNumber(content, tokenizer.getcChar()), content));
-                content = "";
+                if(tokenizer.next() == ';'){
+                    setCancelOthers(false);
+                    close(tokenizer, new VariableValueToken<>(getVariableTypebyNumber(content, Character.MIN_VALUE), content));
+                    content = "";
+                }
+            } else if(ListUtil.containsArray(tokenizer.getcChar(), endChars)) {
                 setCancelOthers(false);
-                //TODO Break
+                close(tokenizer, new VariableValueToken<>(getVariableTypebyNumber(content, tokenizer.getcChar()), content));
+                content = "";
             }else{
-                tokenizer.getTokens().add(new VariableValueToken<>(getVariableTypebyNumber(content, Character.MIN_VALUE), content));
-                content = "";
                 setCancelOthers(false);
-                //TODO Break
+                close(tokenizer, new VariableValueToken<>(getVariableTypebyNumber(content, Character.MIN_VALUE), content));
+                content = "";
             }
         }else if(ListUtil.containsArray(tokenizer.getcChar(), startChars)){
             setCancelOthers(true);
+            content += tokenizer.getcChar();
         }
     }
 }

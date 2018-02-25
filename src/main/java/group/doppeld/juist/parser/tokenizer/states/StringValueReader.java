@@ -14,10 +14,9 @@ public class StringValueReader extends TokenizeReader {
         if(isCancelOthers()){
             if(tokenizer.getcChar() == '\\') locket = true;
             else if(tokenizer.getcChar() == '"' && !locket) {
-                //TODO What is the next state????
-                tokenizer.getTokens().add(new VariableValueToken<>(VariableValueToken.VariableType.STRING, string));
-                string = "";
                 setCancelOthers(false);
+                close(tokenizer, new VariableValueToken<>(VariableValueToken.VariableType.STRING, string));
+                string = "";
             } else {
                 locket = false;
                 string += tokenizer.getcChar();

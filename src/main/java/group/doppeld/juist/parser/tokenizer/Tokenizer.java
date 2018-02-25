@@ -13,7 +13,7 @@ public class Tokenizer {
     //The Current Char
     private int index;
     private char cChar;
-    private int line = 0;
+    private int line = 1;
 
     //States
     private TokenizeStates before = TokenizeStates.DEFAULT;
@@ -52,6 +52,7 @@ public class Tokenizer {
                     break;
                 }
             }
+            //System.out.println(cChar + " " + line);
             if(cChar == '\n') line++;
             index++;
             updater.onReadNextChar();
@@ -81,9 +82,17 @@ public class Tokenizer {
 
     public boolean isNextSkip(String str){
         if(index+str.length() > source.length()) return false;
-        boolean result = source.substring(index, index+str.length()).equals(str);
-        if(result) index += str.length();
-        return result;
+        int newlines = 0;
+        for(int i = 0;i < str.length();i++) {
+            char c = str.charAt(i);
+            if (source.charAt(i + index) != c) return false;
+            else if (c == '\n') newlines++;
+        }
+       // System.out.println("skip" + str.length());
+        if(str.charAt(0) == '\n') newlines--;
+        line += newlines;
+        index += str.length()-1;
+        return true;
     }
 
     public char next(int steps){

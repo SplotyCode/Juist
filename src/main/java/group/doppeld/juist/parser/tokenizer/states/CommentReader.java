@@ -6,7 +6,7 @@ import group.doppeld.juist.parser.tokenizer.Tokenizer;
 
 public class CommentReader extends TokenizeReader {
 
-    private boolean advaned = false;
+    private boolean advanced = false;
 
     @Override
     public void handleChar(Tokenizer tokenizer) {
@@ -23,19 +23,19 @@ public class CommentReader extends TokenizeReader {
     }
 
     private boolean isExitComment(Tokenizer tokenizer){
-        if(advaned){
-            return tokenizer.getcChar() == '*' && tokenizer.next() == '/';
+        if(advanced){
+            return tokenizer.isNextSkip("*/");
         }else{
             return tokenizer.getcChar() == '\n';
         }
     }
 
     private boolean isNewComment(Tokenizer tokenizer){
-        if(tokenizer.getcChar() == '/' && tokenizer.next() == '/'){
-            advaned = false;
+        if(tokenizer.getcChar() == '#'){
+            advanced = false;
             return true;
         }else if(tokenizer.getcChar() == '/' && tokenizer.next() == '*'){
-            advaned = true;
+            advanced = true;
             return true;
         }
         return false;

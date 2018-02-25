@@ -2,9 +2,9 @@ package group.doppeld.juist.parser.tokenizer;
 
 public enum TokenizeStates {
 
-    DEFAULT(null, TokenizeConstants.COMMENT_READER, TokenizeConstants.VAL_READER),
+    DEFAULT(null, TokenizeConstants.COMMENT_READER, TokenizeConstants.VAL_READER, TokenizeConstants.FUN_READER, TokenizeConstants.LAST_DEFAULT_READER),
     COMMENT(TokenizeConstants.COMMENT_READER),
-    VALUE(null, TokenizeConstants.STRING_VALUE_READER);
+    VALUE(null, TokenizeConstants.STRING_VALUE_READER, TokenizeConstants.NUMBER_READER, TokenizeConstants.LAST_VALUE_READER);
 
     private final TokenizeReader state;
     private final TokenizeReader[] active;
