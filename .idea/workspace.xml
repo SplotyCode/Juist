@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3cceceb3-b78d-4384-9d37-9cc24d45a94c" name="Default" comment="Still Improving Tokenizer">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/FunReader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/LastDefaultReader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/LastValueReader.java" />
+    <list default="true" id="3cceceb3-b78d-4384-9d37-9cc24d45a94c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/util/CharUtil.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/ErnsterTest.form" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/ErnsterTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/Hello.form" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/Hello.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/ObjTest.kt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/a.kt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/as.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/b.kt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/enum.kt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/Parser.java" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/Parser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/TokenizeConstants.java" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/TokenizeConstants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/TokenizeStates.java" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/TokenizeStates.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/Tokenizer.java" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/Tokenizer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/CommentReader.java" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/CommentReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/NumberReader.java" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/NumberReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/StringValueReader.java" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/StringValueReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/ValReader.java" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/ValReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/FunReader.java" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/FunReader.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -25,14 +25,28 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="FunReader.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/FunReader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="164" column="8" lean-forward="true" selection-start-line="164" selection-start-column="8" selection-end-line="164" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
         <option value="Interface" />
+        <option value="Kotlin Enum" />
         <option value="Class" />
+        <option value="Singleton" />
+        <option value="XML Properties File" />
       </list>
     </option>
   </component>
@@ -48,6 +62,7 @@
       <find>cange</find>
       <find>setState(SubState.TYPE);</find>
       <find>setState(SubState.NAME);</find>
+      <find>' '</find>
     </findStrings>
     <replaceStrings>
       <replace>setState(</replace>
@@ -64,7 +79,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/config/StartArgements.java" />
         <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/Constants.java" />
         <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/util/FileUtil.java" />
@@ -103,10 +117,19 @@
         <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/ValReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/NumberReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/Parser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/FunReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/LastValueReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/TokenizeConstants.java" />
         <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/TokenizeStates.java" />
+        <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/util/CharUtil.java" />
+        <option value="$PROJECT_DIR$/src/test/java/b.kt" />
+        <option value="$PROJECT_DIR$/src/test/java/enum.kt" />
+        <option value="$PROJECT_DIR$/src/test/java/a.kt" />
+        <option value="$PROJECT_DIR$/src/test/java/ObjTest.kt" />
+        <option value="$PROJECT_DIR$/src/test/java/Hello.form" />
+        <option value="$PROJECT_DIR$/src/test/java/Hello.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ErnsterTest.form" />
+        <option value="$PROJECT_DIR$/testing/a.kt" />
+        <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/FunReader.java" />
       </list>
     </option>
   </component>
@@ -132,7 +155,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -149,77 +174,18 @@
               <item name="Juist" type="b2602c69:ProjectViewProjectNode" />
               <item name="Juist" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Juist" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Juist" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Juist" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Juist" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="juist" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Juist" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Juist" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="juist" type="462c0819:PsiDirectoryNode" />
-              <item name="parser" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Juist" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Juist" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="juist" type="462c0819:PsiDirectoryNode" />
-              <item name="parser" type="462c0819:PsiDirectoryNode" />
-              <item name="tokenizer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Juist" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Juist" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="juist" type="462c0819:PsiDirectoryNode" />
-              <item name="parser" type="462c0819:PsiDirectoryNode" />
-              <item name="tokenizer" type="462c0819:PsiDirectoryNode" />
-              <item name="states" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Juist" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Juist" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="juist" type="462c0819:PsiDirectoryNode" />
-              <item name="parser" type="462c0819:PsiDirectoryNode" />
-              <item name="tokenizer" type="462c0819:PsiDirectoryNode" />
-              <item name="tokens" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Juist" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Juist" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Juist" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Juist" type="462c0819:PsiDirectoryNode" />
+              <item name="testing" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
-      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -231,6 +197,9 @@
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/testing" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/group/doppeld/juist/fileload" />
     </key>
@@ -248,6 +217,20 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.Juist">
+    <configuration name="ErnsterTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="ErnsterTest" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Juist" />
+      <envs />
+    </configuration>
     <configuration name="Juist" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -347,9 +330,14 @@
       <properties />
       <listeners />
     </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Application.Juist" />
+      <item index="1" class="java.lang.String" itemvalue="Application.ErnsterTest" />
+    </list>
     <recent_temporary>
-      <list size="1">
+      <list size="2">
         <item index="0" class="java.lang.String" itemvalue="Application.Juist" />
+        <item index="1" class="java.lang.String" itemvalue="Application.ErnsterTest" />
       </list>
     </recent_temporary>
   </component>
@@ -414,11 +402,19 @@
       <option name="project" value="LOCAL" />
       <updated>1519431742429</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Tokenizer can now read variables">
+      <created>1519555147575</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1519555147575</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="53" width="1311" height="780" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -432,7 +428,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23673792" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24069676" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Multi-OS Engine" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -459,104 +455,16 @@
     <MESSAGE value="update Tokenizer..." />
     <MESSAGE value="rename" />
     <MESSAGE value="Still Improving Tokenizer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Still Improving Tokenizer" />
+    <MESSAGE value="Tokenizer can now read variables" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tokenizer can now read variables" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="27" column="21" lean-forward="false" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/fileload/yaml/ConfigurationSection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/fileload/yaml/MemoryConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/fileload/yaml/MemorySection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/fileload/yaml/Configuration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/fileload/yaml/FileConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/io/InputStreamReader.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="12" column="35" lean-forward="true" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/fileload/yaml/YamlConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="59" column="20" lean-forward="false" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/fileload/LoadType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/util/zip/ZipFile.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="168" column="0" lean-forward="true" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/fileload/FileLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="33" column="54" lean-forward="true" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/io/IOException.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="17" column="4" lean-forward="true" selection-start-line="17" selection-start-column="4" selection-end-line="23" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/fileload/JuistArchiveLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="25" column="34" lean-forward="false" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/Token.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="52">
@@ -731,9 +639,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -751,9 +656,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="12" column="13" lean-forward="true" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -785,33 +687,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/ValReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/FunReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/LastValueReader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
           <caret line="14" column="76" lean-forward="false" selection-start-line="14" selection-start-column="76" selection-end-line="14" selection-end-column="76" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#315#316#0" expanded="true" />
-            <element signature="e#342#343#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -827,7 +706,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -835,6 +713,104 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="830" column="17" lean-forward="false" selection-start-line="830" selection-start-column="17" selection-end-line="830" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/util/CharUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="5" column="69" lean-forward="false" selection-start-line="5" selection-start-column="69" selection-end-line="5" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/Hello.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/javax/swing/JDialog.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7488">
+          <caret line="26" column="29" lean-forward="false" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/ErnsterTest.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/ObjTest.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="2" column="32" lean-forward="false" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/ErnsterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="49" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/Hello.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="2" column="20" lean-forward="true" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/ValReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="58" column="26" lean-forward="true" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/22.xml" />
+    <entry file="file://$PROJECT_DIR$/src/test/java/22_as.xml" />
+    <entry file="file://$PROJECT_DIR$/testing/enum.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="5" column="29" lean-forward="true" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/b.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/as.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="3" column="34" lean-forward="true" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
+          <folding>
+            <element signature="e#100#101#0" expanded="false" />
+            <element signature="e#134#135#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/a.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="7" column="1" lean-forward="false" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/FunReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="164" column="8" lean-forward="true" selection-start-line="164" selection-start-column="8" selection-end-line="164" selection-end-column="8" />
           <folding />
         </state>
       </provider>

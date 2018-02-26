@@ -1,8 +1,10 @@
 package group.doppeld.juist.parser.tokenizer.states;
 
+import group.doppeld.juist.exeptions.InternalException;
 import group.doppeld.juist.exeptions.UnexpectedCharException;
 import group.doppeld.juist.parser.tokenizer.TokenizeReader;
 import group.doppeld.juist.parser.tokenizer.Tokenizer;
+import group.doppeld.juist.util.CharUtil;
 
 import java.util.HashMap;
 
@@ -25,20 +27,141 @@ public class FunReader extends TokenizeReader {
         ARGSPLIT,
         ARGSPLITDONE,
         ARGTYPE,
-        ARGTYPEDONE,
+        COMMA,
+        TYPESPLIT,
+        TYPESPLITDONE,
+        TYPE,
         END
 
     }
 
-    private ValReader.SubState state = ValReader.SubState.IDLE;
+    private SubState state = SubState.IDLE;
 
     @Override
     public void handleChar(Tokenizer tokenizer) throws UnexpectedCharException {
         if(isCancelOthers()){
-
+            switch (state) {
+                case BEFORENAME:
+                    state = SubState.NAME;
+                    name += tokenizer.getcChar();
+                    setIgnoreWhitespace(false);
+                    break;
+                case NAME:
+                    if (CharUtil.isWhitespace(tokenizer.getcChar())) {
+                        setIgnoreWhitespace(true);
+                        state = SubState.ARGUMENTSSTART;
+                    } else if (tokenizer.getcChar() == '(') {
+                        setIgnoreWhitespace(true);
+                        state = SubState.BEFOREARGNAME;
+                    } else {
+                        name += tokenizer.getcChar();
+                    }
+                    break;
+                case ARGUMENTSSTART:
+                    if(tokenizer.getcChar() == '(') {
+                        state = SubState.BEFOREARGNAME;
+                    }else throw new UnexpectedCharException(tokenizer, "Expected '(' or whitespace");
+                    break;
+                case BEFOREARGNAME:
+                    if(tokenizer.getcChar() == ')'){
+                        state = SubState.END;
+                    }else {
+                        setIgnoreWhitespace(false);
+                        state = SubState.ARGNAME;
+                    }
+                    break;
+                case ARGNAME:
+                    if (CharUtil.isWhitespace(tokenizer.getcChar())) {
+                        setIgnoreWhitespace(true);
+                        state = SubState.ARGSPLIT;
+                    } else if (tokenizer.getcChar() == ':') {
+                        setIgnoreWhitespace(true);
+                        state = SubState.ARGSPLITDONE;
+                    } else {
+                        curArgName += tokenizer.getcChar();
+                    }
+                    break;
+                case ARGSPLIT:
+                    if(tokenizer.getcChar() == ':') state = SubState.ARGSPLITDONE;
+                    else throw new UnexpectedCharException(tokenizer, "Expected a type-split thingy as ':' or just some kind of whitespace");
+                    break;
+                case ARGSPLITDONE:
+                    setIgnoreWhitespace(false);
+                    state = SubState.ARGTYPE;
+                    break;
+                case ARGTYPE:
+                    if(CharUtil.isWhitespace(tokenizer.getcChar())){
+                        state = SubState.COMMA;
+                        setIgnoreWhitespace(true);
+                    }else if(tokenizer.getcChar() == ','){
+                        arguments.put(curArgName, curArgType);
+                        curArgType = "";
+                        curArgName = "";
+                        state = SubState.BEFOREARGNAME;
+                    }else if(tokenizer.getcChar() == ')'){
+                        arguments.put(curArgName, curArgType);
+                        curArgType = "";
+                        curArgName = "";
+                        state = SubState.TYPESPLIT;
+                        setIgnoreWhitespace(true);
+                    }else {
+                        curArgType += tokenizer.getcChar();
+                    }
+                    break;
+                case COMMA:
+                    if(tokenizer.getcChar() == ','){
+                        arguments.put(curArgName, curArgType);
+                        curArgType = "";
+                        curArgName = "";
+                        state = SubState.BEFOREARGNAME;
+                    }else if(tokenizer.getcChar() == ')'){
+                        arguments.put(curArgName, curArgType);
+                        curArgType = "";
+                        curArgName = "";
+                        state = SubState.TYPESPLIT;
+                    }else throw new UnexpectedCharException(tokenizer, "Expect Whitespace, ',' or )");
+                    break;
+                case TYPESPLIT:
+                    if(tokenizer.getcChar() == ':'){
+                        state = SubState.TYPESPLITDONE;
+                    }else if(tokenizer.getcChar() == '{'){
+                        startSource();
+                    }else throw new UnexpectedCharException(tokenizer, "Expect Whitespace, ':' or {");
+                    break;
+                case TYPESPLITDONE:
+                    setIgnoreWhitespace(false);
+                    type += tokenizer.getcChar();
+                    state = SubState.TYPE;
+                    break;
+                case TYPE:
+                    if(CharUtil.isWhitespace(tokenizer.getcChar())){
+                        state = SubState.END;
+                        setIgnoreWhitespace(true);
+                    }else if(tokenizer.getcChar() == '{'){
+                        startSource();
+                    }else type += tokenizer.getcChar();
+                    break;
+                case END:
+                    if(tokenizer.getcChar() == '{'){
+                        startSource();
+                    }else throw new UnexpectedCharException(tokenizer, "Expect Whitespace or '{'");
+                    break;
+                case IDLE:
+                    throw new InternalException("SubState == Idle?? I am working!");
+                default:
+                    throw new InternalError("I did't know that i have a SubState named '" + state + "'!");
+            }
         }else if(tokenizer.isNextSkip("fun")){
             setCancelOthers(true);
             setIgnoreWhitespace(true);
+            state = SubState.BEFORENAME;
         }
+    }
+
+    private void startSource(){
+        setCancelOthers(false);
+        setIgnoreWhitespace(false);
+        //TODO: START SOURCE CODE STATES... stop the state when function closes
+        
     }
 }
