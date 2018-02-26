@@ -1,6 +1,6 @@
 package group.doppeld.juist.parser.tokenizer;
 
-import com.sun.istack.internal.Nullable;
+import group.doppeld.juist.anotations.Nullable;
 import group.doppeld.juist.exeptions.InternalException;
 import group.doppeld.juist.exeptions.UnexpectedCharException;
 
@@ -61,7 +61,8 @@ public abstract class TokenizeReader {
         this.ignoreWhitespace = ignoreWhitespace;
     }
 
-    @Nullable public CloseListener getOnClose() {
+    @Nullable
+    public CloseListener getOnClose() {
         return onClose;
     }
 

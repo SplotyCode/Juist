@@ -3,10 +3,15 @@ package group.doppeld.juist.parser.tokenizer.states;
 import group.doppeld.juist.exeptions.InternalException;
 import group.doppeld.juist.exeptions.UnexpectedCharException;
 import group.doppeld.juist.parser.tokenizer.TokenizeReader;
+import group.doppeld.juist.parser.tokenizer.TokenizeStates;
 import group.doppeld.juist.parser.tokenizer.Tokenizer;
+import group.doppeld.juist.parser.tokenizer.tokens.FunctionToken;
+import group.doppeld.juist.parser.tokenizer.tokens.StatementToken;
 import group.doppeld.juist.util.CharUtil;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class FunReader extends TokenizeReader {
 
@@ -15,6 +20,8 @@ public class FunReader extends TokenizeReader {
     private String type = "";
     private HashMap<String, String> arguments = new HashMap<>();
     private String curArgName = "", curArgType = "";
+
+    private TokenizeStates before;
 
     public enum SubState {
 
@@ -64,7 +71,7 @@ public class FunReader extends TokenizeReader {
                     break;
                 case BEFOREARGNAME:
                     if(tokenizer.getcChar() == ')'){
-                        state = SubState.END;
+                        state = SubState.TYPESPLIT;
                     }else {
                         setIgnoreWhitespace(false);
                         state = SubState.ARGNAME;
@@ -125,7 +132,7 @@ public class FunReader extends TokenizeReader {
                     if(tokenizer.getcChar() == ':'){
                         state = SubState.TYPESPLITDONE;
                     }else if(tokenizer.getcChar() == '{'){
-                        startSource();
+                        startSource(tokenizer);
                     }else throw new UnexpectedCharException(tokenizer, "Expect Whitespace, ':' or {");
                     break;
                 case TYPESPLITDONE:
@@ -138,12 +145,12 @@ public class FunReader extends TokenizeReader {
                         state = SubState.END;
                         setIgnoreWhitespace(true);
                     }else if(tokenizer.getcChar() == '{'){
-                        startSource();
+                        startSource(tokenizer);
                     }else type += tokenizer.getcChar();
                     break;
                 case END:
                     if(tokenizer.getcChar() == '{'){
-                        startSource();
+                        startSource(tokenizer);
                     }else throw new UnexpectedCharException(tokenizer, "Expect Whitespace or '{'");
                     break;
                 case IDLE:
@@ -158,10 +165,25 @@ public class FunReader extends TokenizeReader {
         }
     }
 
-    private void startSource(){
+    private void startSource(Tokenizer tokenizer){
         setCancelOthers(false);
         setIgnoreWhitespace(false);
+        before = tokenizer.getBefore();
+        tokenizer.setState(TokenizeStates.SOURCE);
+        TokenizeStates.VALUE.setFirstOnCloseListener((data) -> {
+            tokenizer.getTokens().add(new FunctionToken(name, arguments, type, (ArrayList<StatementToken>) data[0]));
+            name = "";
+            type = "";
+            arguments.clear();
+            if(!curArgName.equals("") || !curArgType.equals("")) throw new InternalException("FunReader -> Last Argument Cache is not empty in final end state!!!");
+            setCancelOthers(false);
+            setIgnoreWhitespace(false);
+            tokenizer.setState(before);
+        });
         //TODO: START SOURCE CODE STATES... stop the state when function closes
-        
+        System.out.println(name + " " + type);
+        for(Map.Entry<String, String> pair : arguments.entrySet()){
+            System.out.println("    " + pair.getKey() + " " + pair.getValue());
+        }
     }
 }

@@ -1,10 +1,13 @@
 package group.doppeld.juist.parser.tokenizer;
 
+import static group.doppeld.juist.parser.tokenizer.TokenizeConstants.*;
+
 public enum TokenizeStates {
 
-    DEFAULT(null, TokenizeConstants.COMMENT_READER, TokenizeConstants.VAL_READER, TokenizeConstants.FUN_READER, TokenizeConstants.LAST_DEFAULT_READER),
-    COMMENT(TokenizeConstants.COMMENT_READER),
-    VALUE(null, TokenizeConstants.STRING_VALUE_READER, TokenizeConstants.NUMBER_READER, TokenizeConstants.LAST_VALUE_READER);
+    DEFAULT(null, COMMENT_READER, VAL_READER, FUN_READER, LAST_DEFAULT_READER),
+    COMMENT(COMMENT_READER),
+    VALUE(null, COMMENT_READER, STRING_VALUE_READER, NUMBER_READER, LAST_VALUE_READER),
+    SOURCE(null, COMMENT_READER, VAL_READER, RETURN_STATEMENT_READER, /* This should be the main state but it needs to be the last reader */TokenizeConstants.IN_SOURCE_READER);
 
     private final TokenizeReader state;
     private final TokenizeReader[] active;

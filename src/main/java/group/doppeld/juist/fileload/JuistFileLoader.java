@@ -1,7 +1,7 @@
 package group.doppeld.juist.fileload;
 
-import com.sun.istack.internal.Nullable;
 import group.doppeld.juist.Constants;
+import group.doppeld.juist.anotations.Nullable;
 import group.doppeld.juist.exeptions.FileLoadException;
 import group.doppeld.juist.util.FileUtil;
 import java.io.File;
@@ -13,7 +13,8 @@ public class JuistFileLoader {
     private File file;
     private String content;
 
-    @Nullable private JuistArchiveLoader archive;
+    @Nullable
+    private JuistArchiveLoader archive;
 
     public JuistFileLoader load(final File file) throws FileLoadException {
         String extension = FileUtil.getExtension(file);

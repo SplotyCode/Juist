@@ -1,6 +1,7 @@
 package group.doppeld.juist.parser.tokenizer;
 
 import group.doppeld.juist.parser.tokenizer.states.*;
+import group.doppeld.juist.parser.tokenizer.states.statements.ReturnStatementReader;
 
 public final class TokenizeConstants {
 
@@ -11,5 +12,9 @@ public final class TokenizeConstants {
     public static final LastDefaultReader LAST_DEFAULT_READER = new LastDefaultReader();
     public static final FunReader FUN_READER = new FunReader();
     public static final LastValueReader LAST_VALUE_READER = new LastValueReader();
+    public static final InSourceReader IN_SOURCE_READER = new InSourceReader();
+
+    /* Statements */
+    public static final ReturnStatementReader RETURN_STATEMENT_READER = new ReturnStatementReader();
 
 }
