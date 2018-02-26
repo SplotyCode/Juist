@@ -7,7 +7,7 @@ public enum TokenizeStates {
     DEFAULT(null, COMMENT_READER, VAL_READER, FUN_READER, LAST_DEFAULT_READER),
     COMMENT(COMMENT_READER),
     VALUE(null, COMMENT_READER, STRING_VALUE_READER, NUMBER_READER, LAST_VALUE_READER),
-    SOURCE(null, COMMENT_READER, VAL_READER, RETURN_STATEMENT_READER, /* This should be the main state but it needs to be the last reader */TokenizeConstants.IN_SOURCE_READER);
+    SOURCE(null, COMMENT_READER, VAL_READER, RETURN_STATEMENT_READER, FUNCTION_CALL_STATEMENT_READER, /* This should be the main state but it needs to be the last reader */TokenizeConstants.IN_SOURCE_READER);
 
     private final TokenizeReader state;
     private final TokenizeReader[] active;

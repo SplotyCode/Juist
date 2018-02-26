@@ -1,6 +1,7 @@
 package group.doppeld.juist.parser.tokenizer;
 
 import group.doppeld.juist.parser.tokenizer.states.*;
+import group.doppeld.juist.parser.tokenizer.states.statements.FunctionCallStatementReader;
 import group.doppeld.juist.parser.tokenizer.states.statements.ReturnStatementReader;
 
 public final class TokenizeConstants {
@@ -16,5 +17,6 @@ public final class TokenizeConstants {
 
     /* Statements */
     public static final ReturnStatementReader RETURN_STATEMENT_READER = new ReturnStatementReader();
+    public static final FunctionCallStatementReader FUNCTION_CALL_STATEMENT_READER = new FunctionCallStatementReader();
 
 }

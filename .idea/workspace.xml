@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3cceceb3-b78d-4384-9d37-9cc24d45a94c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/anotations/NotNull.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/anotations/Nullable.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/InSourceReader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/statements/ReturnStatementReader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/tokens/FunctionToken.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/tokens/StatementToken.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/tokens/statements/ReturnStatementToken.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/statements/FunctionCallStatementReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/tokens/statements/FunctionCallStatementToken.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/fileload/JuistFileLoader.java" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/fileload/JuistFileLoader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/TokenizeConstants.java" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/TokenizeConstants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/TokenizeReader.java" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/TokenizeReader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/TokenizeStates.java" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/TokenizeStates.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/FunReader.java" afterPath="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/FunReader.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -71,9 +63,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/fileload/FileLoader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/fileload/FileLoadExeption.java" />
-        <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/GlobalState.java" />
         <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/CommentState.java" />
         <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/StringValueState.java" />
         <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/exeptions/FileLoadException.java" />
@@ -120,8 +109,11 @@
         <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/statements/ReturnStatement.java" />
         <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/tokens/statements/ReturnStatementToken.java" />
         <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/statements/ReturnStatementReader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/TokenizeConstants.java" />
+        <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/tokens/statements/FunctionCallStatement.java" />
         <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/TokenizeStates.java" />
+        <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/tokens/statements/FunctionCallStatementToken.java" />
+        <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/statements/FunctionCallStatementReader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/TokenizeConstants.java" />
       </list>
     </option>
   </component>
@@ -217,52 +209,6 @@
               <item name="juist" type="462c0819:PsiDirectoryNode" />
               <item name="parser" type="462c0819:PsiDirectoryNode" />
               <item name="tokenizer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Juist" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Juist" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="juist" type="462c0819:PsiDirectoryNode" />
-              <item name="parser" type="462c0819:PsiDirectoryNode" />
-              <item name="tokenizer" type="462c0819:PsiDirectoryNode" />
-              <item name="states" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Juist" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Juist" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="juist" type="462c0819:PsiDirectoryNode" />
-              <item name="parser" type="462c0819:PsiDirectoryNode" />
-              <item name="tokenizer" type="462c0819:PsiDirectoryNode" />
-              <item name="states" type="462c0819:PsiDirectoryNode" />
-              <item name="statements" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Juist" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Juist" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="juist" type="462c0819:PsiDirectoryNode" />
-              <item name="parser" type="462c0819:PsiDirectoryNode" />
-              <item name="tokenizer" type="462c0819:PsiDirectoryNode" />
-              <item name="tokens" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Juist" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Juist" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="juist" type="462c0819:PsiDirectoryNode" />
-              <item name="parser" type="462c0819:PsiDirectoryNode" />
-              <item name="tokenizer" type="462c0819:PsiDirectoryNode" />
-              <item name="tokens" type="462c0819:PsiDirectoryNode" />
-              <item name="statements" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Juist" type="b2602c69:ProjectViewProjectNode" />
@@ -506,7 +452,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519664767873</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="fixed function head bug &amp; fix maven compiler complainings &amp; return statement">
+      <created>1519675407854</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1519675407854</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -520,7 +473,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293745" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3312102" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3312102" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32961783" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -553,7 +506,8 @@
     <MESSAGE value="Still Improving Tokenizer" />
     <MESSAGE value="Tokenizer can now read variables" />
     <MESSAGE value="finished reader for function head" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished reader for function head" />
+    <MESSAGE value="fixed function head bug &amp; fix maven compiler complainings &amp; return statement" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed function head bug &amp; fix maven compiler complainings &amp; return statement" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -562,20 +516,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/exeptions/FileLoadException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/lang/Throwable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="135" column="32" lean-forward="true" selection-start-line="135" selection-start-column="32" selection-end-line="135" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/lang/Exception.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="415">
@@ -843,14 +783,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/tokens/StatementToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="4" column="42" lean-forward="false" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/tokens/FunctionToken.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -897,19 +829,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/tokens/statements/ReturnStatementToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="9" column="67" lean-forward="false" selection-start-line="9" selection-start-column="67" selection-end-line="9" selection-end-column="67" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#433#434#0" expanded="true" />
-            <element signature="e#485#486#0" expanded="true" />
-            <element signature="e#521#522#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/statements/ReturnStatementReader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="268">
@@ -920,29 +839,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/tokens/StatementToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/tokens/statements/ReturnStatementToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="5" column="47" lean-forward="true" selection-start-line="5" selection-start-column="47" selection-end-line="5" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#383#384#0" expanded="true" />
+            <element signature="e#433#434#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/statements/FunctionCallStatementReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/states/ValReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="85" column="47" lean-forward="true" selection-start-line="85" selection-start-column="47" selection-end-line="85" selection-end-column="47" />
+        <state relative-caret-position="456">
+          <caret line="95" column="23" lean-forward="true" selection-start-line="85" selection-start-column="20" selection-end-line="95" selection-end-column="23" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/tokens/statements/FunctionCallStatementToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="7" column="63" lean-forward="false" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/TokenizeConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="19" column="119" lean-forward="false" selection-start-line="19" selection-start-column="119" selection-end-line="19" selection-end-column="119" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/TokenizeStates.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
-          <caret line="9" column="70" lean-forward="false" selection-start-line="9" selection-start-column="70" selection-end-line="9" selection-end-column="70" />
+          <caret line="9" column="102" lean-forward="false" selection-start-line="9" selection-start-column="102" selection-end-line="9" selection-end-column="102" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/group/doppeld/juist/parser/tokenizer/TokenizeConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
