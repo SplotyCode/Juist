@@ -10,7 +10,8 @@ public class VariableValueToken<T> extends Token {
         DOUBLE,
         FLOAT,
         LONG,
-        INTEGER
+        INTEGER,
+        SHORT
 
     }
 
