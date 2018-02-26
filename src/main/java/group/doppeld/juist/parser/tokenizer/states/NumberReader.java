@@ -15,7 +15,7 @@ public class NumberReader extends TokenizeReader {
 
     private char[] inNumberChars = new char[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, '.'};
 
-    private char[] endChars = new char[]{'d', 'f', 'l'};
+    private char[] endChars = new char[]{'d', 'f', 'l', 's'};
 
     private VariableValueToken.VariableType getVariableTypebyNumber(String number, char end){
         if(end != Character.MIN_VALUE) {
@@ -26,9 +26,11 @@ public class NumberReader extends TokenizeReader {
                     return VariableValueToken.VariableType.FLOAT;
                 case 'l':
                     return VariableValueToken.VariableType.LONG;
+                case 's':
+                    return VariableValueToken.VariableType.SHORT;
             }
         }
-        return number.contains(".")?VariableValueToken.VariableType.DOUBLE: VariableValueToken.VariableType.INTEGER;
+        return hasFloatingPoint?VariableValueToken.VariableType.DOUBLE: VariableValueToken.VariableType.INTEGER;
     }
 
     private String content;
@@ -56,6 +58,7 @@ public class NumberReader extends TokenizeReader {
                 //TODO Break
             }
         }else if(ListUtil.containsArray(tokenizer.getcChar(), startChars)){
+            hasFloatingPoint = false;
             setCancelOthers(true);
         }
     }
