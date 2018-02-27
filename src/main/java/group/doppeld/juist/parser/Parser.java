@@ -11,7 +11,7 @@ public class Parser {
     public void parse(JuistFileLoader loader){
         long tokenizeStart = System.currentTimeMillis();
         Tokenizer tokenizer = new Tokenizer(loader.getContent());
-        tokenizer.setUpdater(() -> StringUtil.printProgressBar("Tokenizer", tokenizer.getIndex(), tokenizer.getSource().length(), tokenizeStart));
+        //tokenizer.setUpdater(() -> StringUtil.printProgressBar("Tokenizer", tokenizer.getIndex(), tokenizer.getSource().length(), tokenizeStart));
         tokenizer.process();
         Juist.getInstance().log("");
         Juist.getInstance().log("Tokenizer finished in " + (System.currentTimeMillis()-tokenizeStart) + "ms");

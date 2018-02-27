@@ -12,12 +12,19 @@ public class ReturnStatementReader extends TokenizeReader {
 
     private TokenizeStates before;
     private VariableValueToken value;
-    private boolean end;
 
     @Override
     public void handleChar(Tokenizer tokenizer) throws UnexpectedCharException {
         if(isCancelOthers()){
-            if(end){
+            setIgnoreWhitespace(false);
+            setCancelOthers(false);
+            before = tokenizer.getState();
+            tokenizer.setState(TokenizeStates.VALUE);
+            TokenizeStates.VALUE.setFirstOnCloseListener((data) -> {
+                tokenizer.setState(TokenizeStates.SOURCE);
+                setCancelOthers(true);
+                setIgnoreWhitespace(true);
+                value = (VariableValueToken) data[0];
                 if(tokenizer.getcChar() == ';'){
                     setCancelOthers(false);
                     setIgnoreWhitespace(false);
@@ -26,23 +33,10 @@ public class ReturnStatementReader extends TokenizeReader {
                     value = null;
                     before = null;
                 }else throw new UnexpectedCharException(tokenizer, "Expected ';' or whitespace");
-            }else {
-                setIgnoreWhitespace(false);
-                setCancelOthers(false);
-                before = tokenizer.getBefore();
-                tokenizer.setState(TokenizeStates.VALUE);
-                TokenizeStates.VALUE.setFirstOnCloseListener((data) -> {
-                    tokenizer.setState(TokenizeStates.SOURCE);
-                    setCancelOthers(true);
-                    setIgnoreWhitespace(true);
-                    value = (VariableValueToken) data[0];
-                    end = true;
-                });
-            }
+            });
         }else if(tokenizer.isNextSkip("return")){
             setCancelOthers(true);
             setIgnoreWhitespace(true);
-            end = false;
         }
     }
 }

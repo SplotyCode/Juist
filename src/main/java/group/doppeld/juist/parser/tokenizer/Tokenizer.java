@@ -1,6 +1,9 @@
 package group.doppeld.juist.parser.tokenizer;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import group.doppeld.juist.exeptions.UnexpectedCharException;
+import sun.reflect.Reflection;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,7 +28,15 @@ public class Tokenizer {
 
     public Tokenizer(final String source){
         this.source = source;
-        tokens = new ArrayList<>();
+        tokens = new ArrayList<Token>(){
+            @Override
+            public boolean add(Token o) {
+                System.out.println(o.getClass().getSimpleName());
+                Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+                System.out.println(gson.toJson(o));
+                return super.add(o);
+            }
+        };
     }
 
     public Tokenizer(final String source, final ArrayList<Token> tokens){
@@ -125,6 +136,12 @@ public class Tokenizer {
     }
 
     public void setState(TokenizeStates state) {
+        //Extremly Useful for debugging
+        /*try {
+            System.out.println(this.state + " to " + state + " at " + line + " from " + Class.forName(Thread.currentThread().getStackTrace()[2].getClassName()) + "[" + Thread.currentThread().getStackTrace()[2].getLineNumber() + "]");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }*/
         before = this.state;
         this.state = state;
     }

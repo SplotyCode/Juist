@@ -1,6 +1,6 @@
 package group.doppeld.juist.parser.tokenizer;
 
-import group.doppeld.juist.anotations.Nullable;
+import com.sun.istack.internal.Nullable;
 import group.doppeld.juist.exeptions.InternalException;
 import group.doppeld.juist.exeptions.UnexpectedCharException;
 
@@ -20,15 +20,15 @@ public abstract class TokenizeReader {
         this.ignoreWhitespace = ignoreWhitespace;
     }
 
-    public void close(Tokenizer tokenizer, Object... data){
+    public void close(Tokenizer tokenizer, Object... data) throws UnexpectedCharException {
         TokenizeStates state = tokenizer.getState();
-        if(state.getFirstOnCloseListener() != null){
+        if(state.getFirstOnCloseListener() == null){
+            if (onClose != null) onClose.onClose(data);
+            else throw new InternalException("No One is here to say how to close the reader '" + getClass().getSimpleName() + "'!(@" + tokenizer.getLine() + ")");
+            if (!keepOnClose) onClose = null;
+        }else {
             state.getFirstOnCloseListener().onClose(data);
             state.setFirstOnCloseListener(null);
-        }else {
-            if (onClose != null) onClose.onClose(data);
-            else throw new InternalException("No One is here to say how to close the reader '" + getClass().getSimpleName() + "'!");
-            if (!keepOnClose) onClose = null;
         }
     }
 
@@ -61,8 +61,7 @@ public abstract class TokenizeReader {
         this.ignoreWhitespace = ignoreWhitespace;
     }
 
-    @Nullable
-    public CloseListener getOnClose() {
+    @Nullable public CloseListener getOnClose() {
         return onClose;
     }
 

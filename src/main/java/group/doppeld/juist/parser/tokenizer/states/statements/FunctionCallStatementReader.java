@@ -39,7 +39,7 @@ public class FunctionCallStatementReader extends TokenizeReader {
                     }else {
                         setIgnoreWhitespace(false);
                         setCancelOthers(false);
-                        before = tokenizer.getBefore();
+                        before = tokenizer.getState();
                         tokenizer.setState(TokenizeStates.VALUE);
                         TokenizeStates.VALUE.setFirstOnCloseListener((data) -> {
                             tokenizer.setState(tokenizer.getBefore());

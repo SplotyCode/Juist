@@ -17,6 +17,7 @@ public class InSourceReader extends TokenizeReader {
         if(tokenizer.getcChar() == '}'){
             setSkip(true);
             close(tokenizer, statements);
+            //System.out.println("CLOSED!!!");
         }
     }
 }

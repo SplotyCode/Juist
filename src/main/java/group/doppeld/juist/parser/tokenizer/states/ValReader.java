@@ -85,10 +85,10 @@ public class ValReader extends TokenizeReader {
                 } case EQUALSSPLITDONE: {
                     setIgnoreWhitespace(false);
                     setCancelOthers(false);
-                    before = tokenizer.getBefore();
+                    before = tokenizer.getState();
                     tokenizer.setState(TokenizeStates.VALUE);
                     TokenizeStates.VALUE.setFirstOnCloseListener((data) -> {
-                        tokenizer.setState(tokenizer.getBefore());
+                        tokenizer.setState(before);
                         setCancelOthers(true);
                         setIgnoreWhitespace(true);
                         setState(SubState.END);
@@ -98,7 +98,7 @@ public class ValReader extends TokenizeReader {
                 }case END:{
                     if(tokenizer.getcChar() ==  ';'){
                         //shutdown
-                        System.out.println(type + " " + name + " " + value.getType().name() + " " + value.getContent());
+                        //System.out.println(type + " " + name + " " + value.getType().name() + " " + value.getContent());
                         tokenizer.getTokens().add(new VariableToken(type, name, value));
                         name = "";
                         value = null;

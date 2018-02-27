@@ -2,6 +2,7 @@ package group.doppeld.juist.parser.tokenizer.states;
 
 import group.doppeld.juist.exeptions.InternalException;
 import group.doppeld.juist.exeptions.UnexpectedCharException;
+import group.doppeld.juist.parser.tokenizer.TokenizeConstants;
 import group.doppeld.juist.parser.tokenizer.TokenizeReader;
 import group.doppeld.juist.parser.tokenizer.TokenizeStates;
 import group.doppeld.juist.parser.tokenizer.Tokenizer;
@@ -170,20 +171,21 @@ public class FunReader extends TokenizeReader {
         setIgnoreWhitespace(false);
         before = tokenizer.getBefore();
         tokenizer.setState(TokenizeStates.SOURCE);
-        TokenizeStates.VALUE.setFirstOnCloseListener((data) -> {
+       // System.out.println("OPENED!!!");
+        TokenizeConstants.IN_SOURCE_READER.setOnClose((data) -> {
             tokenizer.getTokens().add(new FunctionToken(name, arguments, type, (ArrayList<StatementToken>) data[0]));
             name = "";
             type = "";
             arguments.clear();
-            if(!curArgName.equals("") || !curArgType.equals("")) throw new InternalException("FunReader -> Last Argument Cache is not empty in final end state!!!");
+            if(!curArgName.equals("") || !curArgType.equals("")) throw new InternalException("FunReader -> Last Argument Cache is not empty in final end state!!!(@" + tokenizer.getLine() + ")");
             setCancelOthers(false);
             setIgnoreWhitespace(false);
             tokenizer.setState(before);
         });
         //TODO: START SOURCE CODE STATES... stop the state when function closes
-        System.out.println(name + " " + type);
+        //System.out.println(name + " " + type);
         for(Map.Entry<String, String> pair : arguments.entrySet()){
-            System.out.println("    " + pair.getKey() + " " + pair.getValue());
+            //System.out.println("    " + pair.getKey() + " " + pair.getValue());
         }
     }
 }

@@ -11,7 +11,8 @@ public class VariableValueToken<T> extends Token {
         FLOAT,
         LONG,
         INTEGER,
-        SHORT
+        SHORT,
+        VARIABLE
 
     }
 
