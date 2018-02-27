@@ -90,8 +90,12 @@ public class Tokenizer {
     public char next(){
         return next(1);
     }
-
+    
     public boolean isNextSkip(String str){
+        return isNextSkip(str, false);
+    }
+
+    public boolean isNextSkip(String str, boolean update){
         if(index+str.length() > source.length()) return false;
         int newlines = 0;
         for(int i = 0;i < str.length();i++) {
@@ -103,6 +107,7 @@ public class Tokenizer {
         if(str.charAt(0) == '\n') newlines--;
         line += newlines;
         index += str.length()-1;
+        if(update) cChar = source.charAt(index);
         return true;
     }
 
