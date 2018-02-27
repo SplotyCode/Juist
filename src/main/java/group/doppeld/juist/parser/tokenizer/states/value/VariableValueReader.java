@@ -10,17 +10,17 @@ public class VariableValueReader extends TokenizeReader {
 
     private String name;
 
-    private char[] validChars = "abcdefghijklmnopqrstuvwxyz_".toCharArray();
+    private final char[] VALIDCHARS = "abcdefghijklmnopqrstuvwxyz_".toCharArray();
 
     @Override
     public void handleChar(Tokenizer tokenizer) throws UnexpectedCharException {
         if(isCancelOthers()){
-            if(ListUtil.containsArray(tokenizer.getcChar(), validChars)){
+            if(ListUtil.containsArray(tokenizer.getcChar(), VALIDCHARS)){
                 name += tokenizer.getcChar();
             }else {
                 close(tokenizer, new VariableValueToken<String>(VariableValueToken.VariableType.VARIABLE, name));
             }
-        }else if(ListUtil.containsArray(tokenizer.getcChar(), validChars)){
+        }else if(ListUtil.containsArray(tokenizer.getcChar(), VALIDCHARS)){
             setCancelOthers(true);
             name = tokenizer.getcChar()+"";
         }
