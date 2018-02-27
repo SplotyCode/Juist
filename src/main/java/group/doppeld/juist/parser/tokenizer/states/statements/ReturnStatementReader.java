@@ -16,11 +16,20 @@ public class ReturnStatementReader extends TokenizeReader {
     @Override
     public void handleChar(Tokenizer tokenizer) throws UnexpectedCharException {
         if(isCancelOthers()){
+            if(!CharUtil.isWhitespace(tokenizer.next()) changeValue();
             setIgnoreWhitespace(false);
             setCancelOthers(false);
             before = tokenizer.getState();
             tokenizer.setState(TokenizeStates.VALUE);
-            TokenizeStates.VALUE.setFirstOnCloseListener((data) -> {
+            
+        }else if(tokenizer.isNextSkip("return ", true)){
+            setCancelOthers(true);
+            if(!CharUtil.isWhitespace(tokenizer.getcChar()) changeValue();
+        }
+    }
+    
+    private void changeValue() throws UnexpectedCharException {
+        TokenizeStates.VALUE.setFirstOnCloseListener((data) -> {
                 tokenizer.setState(TokenizeStates.SOURCE);
                 setCancelOthers(true);
                 setIgnoreWhitespace(true);
@@ -34,9 +43,5 @@ public class ReturnStatementReader extends TokenizeReader {
                     before = null;
                 }else throw new UnexpectedCharException(tokenizer, "Expected ';' or whitespace");
             });
-        }else if(tokenizer.isNextSkip("return")){
-            setCancelOthers(true);
-            setIgnoreWhitespace(true);
-        }
     }
 }
