@@ -12,12 +12,18 @@ public class InSourceReader extends TokenizeReader {
     public ArrayList<StatementToken> statements = new ArrayList<>();
 
 
+    public InSourceReader(){
+        super(true);
+    }
+
     @Override
     public void handleChar(Tokenizer tokenizer) throws UnexpectedCharException {
         if(tokenizer.getcChar() == '}'){
             setSkip(true);
             close(tokenizer, statements);
             //System.out.println("CLOSED!!!");
+        }else {
+            throw new UnexpectedCharException(tokenizer, "Invalid Statement!");
         }
     }
 }

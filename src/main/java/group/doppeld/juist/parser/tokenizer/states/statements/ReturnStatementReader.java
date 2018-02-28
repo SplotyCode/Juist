@@ -7,6 +7,7 @@ import group.doppeld.juist.parser.tokenizer.TokenizeStates;
 import group.doppeld.juist.parser.tokenizer.Tokenizer;
 import group.doppeld.juist.parser.tokenizer.tokens.VariableValueToken;
 import group.doppeld.juist.parser.tokenizer.tokens.statements.ReturnStatementToken;
+import group.doppeld.juist.util.CharUtil;
 
 public class ReturnStatementReader extends TokenizeReader {
 
@@ -16,19 +17,25 @@ public class ReturnStatementReader extends TokenizeReader {
     @Override
     public void handleChar(Tokenizer tokenizer) throws UnexpectedCharException {
         if(isCancelOthers()){
-            if(!CharUtil.isWhitespace(tokenizer.next()) changeValue();
-            setIgnoreWhitespace(false);
-            setCancelOthers(false);
-            before = tokenizer.getState();
-            tokenizer.setState(TokenizeStates.VALUE);
-            
-        }else if(tokenizer.isNextSkip("return ", true)){
+            if(!CharUtil.isWhitespace(tokenizer.next())) {
+                //System.out.println("cur2" + tokenizer.next(0));
+                changeValue(tokenizer);
+            }
+        }else if(tokenizer.isNextSkip("return ")){
             setCancelOthers(true);
-            if(!CharUtil.isWhitespace(tokenizer.getcChar()) changeValue();
+            //System.out.println("cur" + tokenizer.next(0));
+            if(!CharUtil.isWhitespace(tokenizer.next(0))) {
+                tokenizer.reHandleChar();
+                changeValue(tokenizer);
+            }
         }
     }
     
-    private void changeValue() throws UnexpectedCharException {
+    private void changeValue(Tokenizer tokenizer) throws UnexpectedCharException {
+        //System.out.println(tokenizer.getcChar());
+        setCancelOthers(false);
+        before = tokenizer.getState();
+        tokenizer.setState(TokenizeStates.VALUE);
         TokenizeStates.VALUE.setFirstOnCloseListener((data) -> {
                 tokenizer.setState(TokenizeStates.SOURCE);
                 setCancelOthers(true);

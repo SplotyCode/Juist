@@ -17,6 +17,7 @@ public class Tokenizer {
     private int index;
     private char cChar;
     private int line = 1;
+    private boolean lastWasNewline = false;
 
     //States
     private TokenizeStates before = TokenizeStates.DEFAULT;
@@ -64,7 +65,10 @@ public class Tokenizer {
                 }
             }
             //System.out.println(cChar + " " + line);
-            if(cChar == '\n') line++;
+            if(cChar == '\n') {
+                line++;
+                lastWasNewline = true;
+            }else lastWasNewline = false;
             index++;
             updater.onReadNextChar();
         }
@@ -103,10 +107,11 @@ public class Tokenizer {
             if (source.charAt(i + index) != c) return false;
             else if (c == '\n') newlines++;
         }
-       // System.out.println("skip" + str.length());
+        System.out.println("skip" + str.length());
         if(str.charAt(0) == '\n') newlines--;
         line += newlines;
         index += str.length()-1;
+        //System.out.println("skipped " + (str.length()-1) + " now at " + next(0));
         if(update) cChar = source.charAt(index);
         return true;
     }
@@ -142,11 +147,11 @@ public class Tokenizer {
 
     public void setState(TokenizeStates state) {
         //Extremly Useful for debugging
-        /*try {
+        try {
             System.out.println(this.state + " to " + state + " at " + line + " from " + Class.forName(Thread.currentThread().getStackTrace()[2].getClassName()) + "[" + Thread.currentThread().getStackTrace()[2].getLineNumber() + "]");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }*/
+        }
         before = this.state;
         this.state = state;
     }
@@ -165,5 +170,14 @@ public class Tokenizer {
 
     public interface Updater {
         void onReadNextChar();
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public void reHandleChar(){
+        index -= 1;
+        if(lastWasNewline) line--;
     }
 }

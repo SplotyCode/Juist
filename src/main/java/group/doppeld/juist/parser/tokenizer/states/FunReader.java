@@ -30,6 +30,7 @@ public class FunReader extends TokenizeReader {
         BEFORENAME,
         NAME,
         ARGUMENTSSTART,
+        BEFOREARGNAMEFIRST,
         BEFOREARGNAME,
         ARGNAME,
         ARGSPLIT,
@@ -48,6 +49,7 @@ public class FunReader extends TokenizeReader {
     @Override
     public void handleChar(Tokenizer tokenizer) throws UnexpectedCharException {
         if(isCancelOthers()){
+            //if(tokenizer.getcChar() == 'x') System.out.println(state.name());
             switch (state) {
                 case BEFORENAME:
                     state = SubState.NAME;
@@ -60,14 +62,14 @@ public class FunReader extends TokenizeReader {
                         state = SubState.ARGUMENTSSTART;
                     } else if (tokenizer.getcChar() == '(') {
                         setIgnoreWhitespace(true);
-                        state = SubState.BEFOREARGNAME;
+                        state = SubState.BEFOREARGNAMEFIRST;
                     } else {
                         name += tokenizer.getcChar();
                     }
                     break;
                 case ARGUMENTSSTART:
                     if(tokenizer.getcChar() == '(') {
-                        state = SubState.BEFOREARGNAME;
+                        state = SubState.BEFOREARGNAMEFIRST;
                     }else throw new UnexpectedCharException(tokenizer, "Expected '(' or whitespace");
                     break;
                 case BEFOREARGNAME:
@@ -75,6 +77,15 @@ public class FunReader extends TokenizeReader {
                         state = SubState.TYPESPLIT;
                     }else {
                         setIgnoreWhitespace(false);
+                        state = SubState.ARGNAME;
+                    }
+                    break;
+                case BEFOREARGNAMEFIRST:
+                    if(tokenizer.getcChar() == ')'){
+                        state = SubState.TYPESPLIT;
+                    }else {
+                        setIgnoreWhitespace(false);
+                        tokenizer.reHandleChar();
                         state = SubState.ARGNAME;
                     }
                     break;
@@ -96,6 +107,7 @@ public class FunReader extends TokenizeReader {
                 case ARGSPLITDONE:
                     setIgnoreWhitespace(false);
                     state = SubState.ARGTYPE;
+                    tokenizer.reHandleChar();
                     break;
                 case ARGTYPE:
                     if(CharUtil.isWhitespace(tokenizer.getcChar())){

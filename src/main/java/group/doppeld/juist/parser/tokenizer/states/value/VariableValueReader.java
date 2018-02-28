@@ -10,7 +10,7 @@ public class VariableValueReader extends TokenizeReader {
 
     private String name;
 
-    private final char[] VALIDCHARS = "abcdefghijklmnopqrstuvwxyz_".toCharArray();
+    private final char[] VALIDCHARS = "abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
 
     @Override
     public void handleChar(Tokenizer tokenizer) throws UnexpectedCharException {
