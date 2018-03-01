@@ -2,6 +2,8 @@ package group.doppeld.juist.parser.tokenizer.tokens.statements;
 
 import group.doppeld.juist.parser.tokenizer.tokens.StatementToken;
 import group.doppeld.juist.parser.tokenizer.tokens.VariableValueToken;
+import group.doppeld.juist.runbox.Script;
+import group.doppeld.juist.runbox.Statement;
 
 public class ReturnStatementToken extends StatementToken {
 
@@ -13,5 +15,10 @@ public class ReturnStatementToken extends StatementToken {
 
     public VariableValueToken getReturnedValue() {
         return returnedValue;
+    }
+
+    @Override
+    public Statement toStatement(Script script) {
+        return null;
     }
 }

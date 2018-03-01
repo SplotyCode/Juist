@@ -7,9 +7,6 @@ import group.doppeld.juist.parser.tokenizer.TokenizeStates;
 import group.doppeld.juist.parser.tokenizer.Tokenizer;
 import group.doppeld.juist.parser.tokenizer.tokens.VariableValueToken;
 import group.doppeld.juist.parser.tokenizer.tokens.statements.FunctionCallStatementToken;
-import group.doppeld.juist.runbox.Script;
-import group.doppeld.juist.runbox.Statement;
-import group.doppeld.juist.runbox.statement.FuctionCallStatement;
 import group.doppeld.juist.util.CharUtil;
 
 import java.util.ArrayList;

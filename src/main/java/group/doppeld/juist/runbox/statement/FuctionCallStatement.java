@@ -1,24 +1,36 @@
 package group.doppeld.juist.runbox.statement;
 
 import group.doppeld.juist.runbox.Function;
+import group.doppeld.juist.runbox.Script;
 import group.doppeld.juist.runbox.Statement;
+import group.doppeld.juist.runbox.variable.SignalVariable;
 import group.doppeld.juist.runbox.variable.Variable;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 //TODO
 public class FuctionCallStatement extends Statement {
 
     private Function function;
-    private Variable[] variables;
+    private ArrayList<Variable> variables;
 
 
-    public FuctionCallStatement(Function function, Variable[] variables) {
+    public FuctionCallStatement(Script script, Function function, ArrayList<Variable> variables) {
         this.function = function;
         this.variables = variables;
     }
 
     @Override
-    public void run() {
-
+    public void run(Script script, long currentCall) {
+        ArrayList<Variable> variables = new ArrayList<>();
+        int i = 0;
+        for(Variable variable : new ArrayList<>(this.variables)){
+            if(variable instanceof SignalVariable)
+                variables.set(i, script.getFunctionVarbyName(currentCall, ((SignalVariable) variable).getPlaceholder(), true));
+            i++;
+        }
+        function.run(script.getNewCallID(), variables.toArray(new Variable[variables.size()]));
     }
 
     public Function getFunction() {
@@ -29,11 +41,5 @@ public class FuctionCallStatement extends Statement {
         this.function = function;
     }
 
-    public Variable[] getVariables() {
-        return variables;
-    }
 
-    public void setVariables(Variable[] variables) {
-        this.variables = variables;
-    }
 }

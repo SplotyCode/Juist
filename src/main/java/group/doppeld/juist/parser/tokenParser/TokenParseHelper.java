@@ -2,6 +2,7 @@ package group.doppeld.juist.parser.tokenParser;
 
 import group.doppeld.juist.exeptions.InvalidTypeExeption;
 import group.doppeld.juist.parser.tokenizer.tokens.VariableValueToken;
+import group.doppeld.juist.runbox.variable.RealVariable;
 import group.doppeld.juist.runbox.variable.Variable;
 import group.doppeld.juist.runbox.VariableType;
 
@@ -52,6 +53,7 @@ public final class TokenParseHelper {
     }
 
     public static VariableType getType(VariableValueToken.VariableType type){
+        if(type == VariableValueToken.VariableType.VARIABLE) throw new IllegalArgumentException("Type can not be a VARIABLE!");
         switch (type){
             case INTEGER:
                 return VariableType.INTEGER;
@@ -65,38 +67,28 @@ public final class TokenParseHelper {
                 return VariableType.SHORT;
             case STRING:
                 return VariableType.STRING;
-            case VARIABLE:
-
+            default:
+                throw new InvalidTypeExeption("Type '" + type + "' is not supported!");
         }
     }
 
-    public class TypeResult {
-        private boolean linked;
-        private VariableType type;
-
-        public TypeResult(boolean linked, VariableType type) {
-            this.linked = linked;
-            this.type = type;
+    public static RealVariable getRealVariablebyToken(VariableValueToken<String> token){
+        VariableType type = getType(token.getType());
+        switch (type){
+            case STRING:
+                return new RealVariable<>(token.getContent(), type);
+            case SHORT:
+                return new RealVariable<>(Short.valueOf(token.getContent()), type);
+            case DOUBLE:
+                return new RealVariable<>(Double.valueOf(token.getContent()), type);
+            case FLOAT:
+                return new RealVariable<>(Float.valueOf(token.getContent()), type);
+            case INTEGER:
+                return new RealVariable<>(Short.valueOf(token.getContent()), type);
+            case LONG:
+                return new RealVariable<>(Long.valueOf(token.getContent()), type);
+            default:
+                throw new InvalidTypeExeption("Type '" + type + "' is not supported!");
         }
-
-        public boolean isLinked() {
-            return linked;
-        }
-
-        public void setLinked(boolean linked) {
-            this.linked = linked;
-        }
-
-        public VariableType getType() {
-            return type;
-        }
-
-        public void setType(VariableType type) {
-            this.type = type;
-        }
-    }
-
-    public static Variable variablefromValueToken(VariableValueToken token){
-        return new Variable<>(token.getContent(), getType(token.getType()));
     }
 }
