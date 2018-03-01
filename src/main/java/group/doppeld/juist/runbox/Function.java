@@ -1,8 +1,10 @@
 package group.doppeld.juist.runbox;
 
+import group.doppeld.juist.exeptions.InvalidTypeExeption;
 import group.doppeld.juist.runbox.variable.Variable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Function {
 
@@ -11,8 +13,18 @@ public class Function {
     private ArrayList<Parameter> parameters;
     private VariableType returnValue;
 
-    public void run(long callID, Variable... parameters) {
-
+    public Variable run(Script script, long callID, Variable... variables) {
+        HashMap<String, Variable> localVariables = new HashMap<>();
+        for(int i = 0;i<variables.length;i++) {
+            if(variables[i].getType() == parameters.get(i).getType())
+                localVariables.put(parameters.get(i).getName(), variables[i]);
+            else throw new InvalidTypeExeption("Wrong Methode type for argument " + i);
+        }
+        script.getFunctionVariables().put(callID, localVariables);
+        //TODO get returned value
+        for(Statement statement : statements)
+            statement.run(script, callID);
+        return null;
     }
 
     public Function(String name, ArrayList<Statement> statements, ArrayList<Parameter> parameters, VariableType returnValue) {

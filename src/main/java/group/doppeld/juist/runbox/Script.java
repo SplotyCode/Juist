@@ -13,7 +13,7 @@ public class Script {
 
     private ArrayList<Function> methods = new ArrayList<>();
     private HashMap<String, Variable> classVariables = new HashMap<>();
-    private HashMap<Long, HashMap<String, Variable>> methodeVariables = new HashMap<>();
+    private HashMap<Long, HashMap<String, Variable>> functionVariables = new HashMap<>();
     private long currentCallId = 0;
 
     public long getNewCallID(){
@@ -26,7 +26,7 @@ public class Script {
     }
 
     public Variable getFunctionVarbyName(long callID, String name, boolean error){
-        HashMap<String, Variable> map = methodeVariables.get(callID);
+        HashMap<String, Variable> map = functionVariables.get(callID);
         if(map == null) {
             if(error) throw new InternalException("InValid Function CallID");
             else return null;
@@ -77,5 +77,9 @@ public class Script {
 
     public HashMap<String, Variable> getClassVariables() {
         return classVariables;
+    }
+
+    public HashMap<Long, HashMap<String, Variable>> getFunctionVariables() {
+        return functionVariables;
     }
 }

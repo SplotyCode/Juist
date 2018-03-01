@@ -15,6 +15,7 @@ public class ClassVariableParser extends TokenParser {
         super(parser);
     }
 
+    //todo: redoing...
     public void parse(Script script, VariableToken token){
         if(script.getClassVariables().containsKey(token.getName())) throw new VariableAlreadyDefined("'" + token.getName() + "' is already defined in class Variables!");
         VariableValueToken value = token.getValue();

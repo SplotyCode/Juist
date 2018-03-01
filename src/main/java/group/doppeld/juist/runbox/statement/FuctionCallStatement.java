@@ -30,7 +30,7 @@ public class FuctionCallStatement extends Statement {
                 variables.set(i, script.getFunctionVarbyName(currentCall, ((SignalVariable) variable).getPlaceholder(), true));
             i++;
         }
-        function.run(script.getNewCallID(), variables.toArray(new Variable[variables.size()]));
+        function.run(script, script.getNewCallID(), variables.toArray(new Variable[variables.size()]));
     }
 
     public Function getFunction() {

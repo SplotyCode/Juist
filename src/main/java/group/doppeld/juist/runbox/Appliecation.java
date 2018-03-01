@@ -16,7 +16,7 @@ public class Appliecation {
         for(Function method : main.getMethods())
             if(method.getName().equals("startApp")){
                 //TODO start arguments
-                method.run();
+                method.run(main, main.getNewCallID());
                 break;
             }
     }

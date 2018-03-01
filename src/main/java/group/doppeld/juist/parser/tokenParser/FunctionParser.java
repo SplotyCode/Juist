@@ -1,10 +1,12 @@
 package group.doppeld.juist.parser.tokenParser;
 
+import group.doppeld.juist.exeptions.FunctionAlreadyDefined;
 import group.doppeld.juist.exeptions.VariableAlreadyDefined;
 import group.doppeld.juist.parser.Parser;
 import group.doppeld.juist.parser.tokenizer.tokens.FunctionToken;
 import group.doppeld.juist.parser.tokenizer.tokens.StatementToken;
 import group.doppeld.juist.runbox.*;
+import group.doppeld.juist.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +30,8 @@ public class FunctionParser extends TokenParser {
             finalParameters.add(new Parameter(entry.getValue(), entry.getKey()));
 
         /* Does the method already exists? */
-        if(script.hasFunction(token.getName(), parameters.values().toArray(new VariableType[parameters.values().size()]))) return;
+        VariableType[] array = parameters.values().toArray(new VariableType[parameters.values().size()]);
+        if(script.hasFunction(token.getName(), array, false)) throw new FunctionAlreadyDefined("Function " + token.getName() + " already exsits with " + StringUtil.join(array, Enum::name, ", "));
         /* What is actually in the method? */
         ArrayList<Statement> statements = new ArrayList<>();
         for(StatementToken statement : token.getStatements()){

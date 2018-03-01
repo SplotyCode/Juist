@@ -1,12 +1,13 @@
 package group.doppeld.juist.runbox.statement;
 
 
+import group.doppeld.juist.runbox.Script;
 import group.doppeld.juist.runbox.Statement;
 
 public class ReturnStatement extends Statement {
 
     @Override
-    public void run() {
-        //TODO
+    public void run(Script script, long currentCall) {
+        //todo
     }
 }
