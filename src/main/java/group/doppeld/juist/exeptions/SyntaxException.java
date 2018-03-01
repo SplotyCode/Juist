@@ -1,6 +1,6 @@
 package group.doppeld.juist.exeptions;
 
-public class SyntaxException extends Exception {
+public class SyntaxException extends RuntimeException {
 
     public SyntaxException(String message){
         super(message);
