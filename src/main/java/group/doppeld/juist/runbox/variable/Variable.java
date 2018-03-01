@@ -23,7 +23,7 @@ public abstract class Variable<T> {
     }
 
     public double getNumber(){
-        if(type.isNumeric()) return (double) getValue();
+        if(type.isNumeric()) return (Double) getValue();
         throw new InvalidTypeExeption("Expected Numeric ValueType");
     }
 
