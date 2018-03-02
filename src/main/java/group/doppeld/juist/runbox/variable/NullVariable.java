@@ -5,7 +5,7 @@ import group.doppeld.juist.runbox.VariableType;
 
 public class NullVariable<T> extends Variable<T> {
     
-    public LinkedVariable(VariableType type) {
+    public NullVariable(VariableType type) {
         super(type);
     }
     
