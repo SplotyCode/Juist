@@ -28,7 +28,10 @@ public class ReturnStatementReader extends TokenizeReader {
             if(!CharUtil.isWhitespace(tokenizer.next(0))) {
                 tokenizer.reHandleChar();
                 changeValue(tokenizer);
+            }else if(!tokenizer.next(0) == ';'){
+                
             }
+            
         }
     }
     
