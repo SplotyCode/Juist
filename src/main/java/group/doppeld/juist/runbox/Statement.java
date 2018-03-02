@@ -3,6 +3,6 @@ package group.doppeld.juist.runbox;
 //TODO
 public abstract class Statement {
 
-    public abstract void run(Script script, long currentCall);
+    public abstract boolean run(Script script, long currentCall);
 
 }
