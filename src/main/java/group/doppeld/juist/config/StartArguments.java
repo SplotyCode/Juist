@@ -16,8 +16,8 @@ public class StartArguments {
         String before = "";
         for(String arg : args){
             if(arg.equals("-d")) debug = true;
-            else if(arg.equals("-logDir")) before = "-logDir";
-            else if(before.equals("-logDir")) logFile = new File(arg);
+            else if(arg.equals("-logFile")) before = "-logFile";
+            else if(before.equals("-logFile")) logFile = new File(arg);
             else if(arg.equals("-version") || arg.equals("-v")) version = true;
             else if(!arg.startsWith("-")) file = new File(arg);
         }

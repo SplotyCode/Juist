@@ -1,18 +1,17 @@
-package group.doppeld.juist.parser.tokenizer.states;
+package group.doppeld.juist.parser.tokenizer.readers.value;
 
 import group.doppeld.juist.exeptions.UnexpectedCharException;
 import group.doppeld.juist.parser.tokenizer.TokenizeReader;
 import group.doppeld.juist.parser.tokenizer.Tokenizer;
 
-public class LastDefaultReader extends TokenizeReader {
+public class LastValueReader extends TokenizeReader {
 
-    public LastDefaultReader(){
+    public LastValueReader(){
         super(true);
     }
 
     @Override
     public void handleChar(Tokenizer tokenizer) throws UnexpectedCharException {
-        throw new UnexpectedCharException(tokenizer);
+        throw new UnexpectedCharException(tokenizer, "This is not a Value :(");
     }
-
 }
