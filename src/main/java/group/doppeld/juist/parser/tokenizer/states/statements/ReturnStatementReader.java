@@ -13,8 +13,7 @@ import group.doppeld.juist.util.CharUtil;
 public class ReturnStatementReader extends TokenizeReader {
 
     private TokenizeStates before;
-    private VariableValueToken value;
-
+    
     @Override
     public void handleChar(Tokenizer tokenizer) throws UnexpectedCharException {
         if(isCancelOthers()){
@@ -29,6 +28,11 @@ public class ReturnStatementReader extends TokenizeReader {
                 tokenizer.reHandleChar();
                 changeValue(tokenizer);
             }else if(!tokenizer.next(0) == ';'){
+                    setCancelOthers(false);
+                    tokenizer.setState(before);
+                    TokenizeConstants.IN_SOURCE_READER.statements.add(new ReturnStatementToken(value));
+                    value = null;
+                    before = null;
                 
             }
             
