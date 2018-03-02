@@ -25,5 +25,6 @@ public final class TokenizeConstants {
     public static final NumberReader NUMBER_READER = new NumberReader();
     public static final StringValueReader STRING_VALUE_READER = new StringValueReader();
     public static final VariableValueReader VARIABLE_VALUE_READER = new VariableValueReader();
+    public static final NullValueReader NULL_VALUE_READER = new NullValueReader();
 
 }
