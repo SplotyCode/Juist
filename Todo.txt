@@ -1,8 +1,6 @@
 Todo:
 boschner und davvviidddd sagen das juist besser als python ist
-return statement fertig
 standart methoden
-
 neue value:Method call
 Value logische operatoren, mathe
 variablen müssen verändert werden können

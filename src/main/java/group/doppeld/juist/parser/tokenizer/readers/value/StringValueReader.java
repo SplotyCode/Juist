@@ -8,18 +8,18 @@ import group.doppeld.juist.parser.tokenizer.tokens.VariableValueToken;
 public class StringValueReader extends TokenizeReader {
 
     private String string = "";
-    private boolean locket = false;
+    private boolean locked = false;
 
     @Override
     public void handleChar(Tokenizer tokenizer) throws UnexpectedCharException {
         if(isCancelOthers()){
-            if(tokenizer.getcChar() == '\\') locket = true;
-            else if(tokenizer.getcChar() == '"' && !locket) {
+            if(tokenizer.getcChar() == '\\') locked = true;
+            else if(tokenizer.getcChar() == '"' && !locked) {
                 setCancelOthers(false);
                 close(tokenizer, new VariableValueToken(VariableValueToken.VariableType.STRING, string));
                 string = "";
             } else {
-                locket = false;
+                locked = false;
                 string += tokenizer.getcChar();
             }
         }else if(tokenizer.getcChar() == '"') {

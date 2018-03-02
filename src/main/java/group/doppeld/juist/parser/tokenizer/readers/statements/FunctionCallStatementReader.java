@@ -14,8 +14,6 @@ import java.util.ArrayList;
 public class FunctionCallStatementReader extends TokenizeReader {
 
     private String name = "";
-    private int lastIndex = -1;
-
     private ArrayList<VariableValueToken> parameters = new ArrayList<>();
 
     enum SubState {
@@ -28,6 +26,7 @@ public class FunctionCallStatementReader extends TokenizeReader {
 
     private SubState subState;
     private TokenizeStates before;
+    private int lastIndex = -1;
 
     @Override
     public void handleChar(Tokenizer tokenizer) throws UnexpectedCharException {
@@ -64,6 +63,7 @@ public class FunctionCallStatementReader extends TokenizeReader {
                         name = "";
                         setIgnoreWhitespace(false);
                         setCancelOthers(false);
+                        lastIndex = -1;
                         tokenizer.setState(before);
                     }else throw new UnexpectedCharException(tokenizer, "Expected Whitespace or ';'");
                     break;

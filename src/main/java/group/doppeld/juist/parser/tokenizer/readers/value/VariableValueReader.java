@@ -9,20 +9,48 @@ import group.doppeld.juist.util.ListUtil;
 public class VariableValueReader extends TokenizeReader {
 
     private String name;
+    private String Methodname;
 
+    private final MethodCallReader methodCallReader = new MethodCallReader();
+
+    enum ValueStates {
+        READINGVALUE,
+        VALUEISMETHOD
+    }
+
+    private ValueStates valueStates;
     private final char[] VALIDCHARS = "abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
 
     @Override
     public void handleChar(Tokenizer tokenizer) throws UnexpectedCharException {
-        if(isCancelOthers()){
-            if(ListUtil.containsArray(tokenizer.getcChar(), VALIDCHARS)){
-                name += tokenizer.getcChar();
-            }else {
-                close(tokenizer, new VariableValueToken(VariableValueToken.VariableType.VARIABLE, name));
+        if (isCancelOthers()) {
+            switch (valueStates) {
+                case READINGVALUE:
+                    if (ListUtil.containsArray(tokenizer.getcChar(), VALIDCHARS)) {
+                        name += tokenizer.getcChar();
+                    } else {
+                        setIgnoreWhitespace(true);
+                        valueStates = ValueStates.VALUEISMETHOD;
+                    }
+                    break;
+
+
+               case VALUEISMETHOD:
+                   if(tokenizer.getcChar() == '('){
+
+
+                   }else {
+
+
+                   }
+                   break;
+           }
+        }else {
+            if(ListUtil.containsArray(tokenizer.getcChar(), VALIDCHARS)) {
+                setCancelOthers(true);
+                name = tokenizer.getcChar()+"";
+                valueStates = ValueStates.READINGVALUE;
             }
-        }else if(ListUtil.containsArray(tokenizer.getcChar(), VALIDCHARS)){
-            setCancelOthers(true);
-            name = tokenizer.getcChar()+"";
         }
     }
 }
