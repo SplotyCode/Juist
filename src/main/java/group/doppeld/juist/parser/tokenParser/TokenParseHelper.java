@@ -1,35 +1,40 @@
 package group.doppeld.juist.parser.tokenParser;
 
+import group.doppeld.juist.exeptions.InternalException;
 import group.doppeld.juist.exeptions.InvalidTypeExeption;
 import group.doppeld.juist.parser.tokenizer.tokens.VariableValueToken;
+import group.doppeld.juist.runbox.Script;
+import group.doppeld.juist.runbox.VariableType;
+import group.doppeld.juist.runbox.variable.LinkedVariable;
 import group.doppeld.juist.runbox.variable.RealVariable;
 import group.doppeld.juist.runbox.variable.Variable;
-import group.doppeld.juist.runbox.VariableType;
 
 public final class TokenParseHelper {
 
-    public static VariableType getType(String must, VariableValueToken.VariableType has) {
-        switch (must) {
+    public static VariableType getType(String rawMust, VariableValueToken.VariableType rawHas) {
+        VariableType must = getType(rawMust);
+        boolean hasExecptiopn = rawHas == VariableValueToken.VariableType.NULL || rawHas == VariableValueToken.VariableType.VOID || rawHas == VariableValueToken.VariableType.VARIABLE;
+        switch (rawMust) {
             case "Int":
-                if (has == VariableValueToken.VariableType.INTEGER) return VariableType.INTEGER;
-                throw new InvalidTypeExeption("Variable MUST has type '" + must + "' but has " + has.name() + " given!");
+                if (rawHas == VariableValueToken.VariableType.INTEGER || hasExecptiopn) return VariableType.INTEGER;
+                throw new InvalidTypeExeption("Variable MUST has type '" + rawMust + "' but has " + rawHas.name() + " given!");
             case "Double":
-                if (has == VariableValueToken.VariableType.DOUBLE) return VariableType.DOUBLE;
-                throw new InvalidTypeExeption("Variable MUST has type '" + must + "' but has " + has.name() + " given!");
+                if (rawHas == VariableValueToken.VariableType.DOUBLE || hasExecptiopn) return VariableType.DOUBLE;
+                throw new InvalidTypeExeption("Variable MUST has type '" + rawMust + "' but has " + rawHas.name() + " given!");
             case "Float":
-                if (has == VariableValueToken.VariableType.FLOAT) return VariableType.FLOAT;
-                throw new InvalidTypeExeption("Variable MUST has type '" + must + "' but has " + has.name() + " given!");
+                if (rawHas == VariableValueToken.VariableType.FLOAT || hasExecptiopn) return VariableType.FLOAT;
+                throw new InvalidTypeExeption("Variable MUST has type '" + rawMust + "' but has " + rawHas.name() + " given!");
             case "Short":
-                if (has == VariableValueToken.VariableType.SHORT) return VariableType.SHORT;
-                throw new InvalidTypeExeption("Variable MUST has type '" + must + "' but has " + has.name() + " given!");
+                if (rawHas == VariableValueToken.VariableType.SHORT || hasExecptiopn) return VariableType.SHORT;
+                throw new InvalidTypeExeption("Variable MUST has type '" + rawMust + "' but has " + rawHas.name() + " given!");
             case "Long":
-                if (has == VariableValueToken.VariableType.LONG) return VariableType.LONG;
-                throw new InvalidTypeExeption("Variable MUST has type '" + must + "' but has " + has.name() + " given!");
+                if (rawHas == VariableValueToken.VariableType.LONG || hasExecptiopn) return VariableType.LONG;
+                throw new InvalidTypeExeption("Variable MUST has type '" + rawMust + "' but has " + rawHas.name() + " given!");
             case "String":
-                if (has == VariableValueToken.VariableType.STRING) return VariableType.STRING;
-                throw new InvalidTypeExeption("Variable MUST has type '" + must + "' but has " + has.name() + " given!");
+                if (rawHas == VariableValueToken.VariableType.STRING || hasExecptiopn) return VariableType.STRING;
+                throw new InvalidTypeExeption("Variable MUST has type '" + rawMust + "' but has " + rawHas.name() + " given!");
             default:
-                throw new InvalidTypeExeption("Type '" + must + "' is not supported!");
+                throw new InvalidTypeExeption("Type '" + rawMust + "' is not supported!");
         }
     }
 
@@ -53,7 +58,6 @@ public final class TokenParseHelper {
     }
 
     public static VariableType getType(VariableValueToken.VariableType type){
-        if(type == VariableValueToken.VariableType.VARIABLE) throw new IllegalArgumentException("Type can not be a VARIABLE!");
         switch (type){
             case INTEGER:
                 return VariableType.INTEGER;
@@ -67,12 +71,16 @@ public final class TokenParseHelper {
                 return VariableType.SHORT;
             case STRING:
                 return VariableType.STRING;
+            case VARIABLE:
+            case NULL:
+            case VOID:
+                throw new InternalException("Can not get type from " + type + "!");
             default:
                 throw new InvalidTypeExeption("Type '" + type + "' is not supported!");
         }
     }
 
-    public static RealVariable getRealVariablebyToken(VariableValueToken<String> token){
+    public static RealVariable getRealVariablebyToken(VariableValueToken token){
         VariableType type = getType(token.getType());
         switch (type){
             case STRING:
@@ -90,5 +98,31 @@ public final class TokenParseHelper {
             default:
                 throw new InvalidTypeExeption("Type '" + type + "' is not supported!");
         }
+    }
+
+    public static void addLinkedVariable(Variable variable, Script script, String name, VariableType type){
+        LinkedVariable result = null;
+        switch (type){
+            case LONG:
+                result = new LinkedVariable<Long>(variable, type);
+                break;
+            case SHORT:
+                result = new LinkedVariable<Short>(variable, type);
+                break;
+            case STRING:
+                result = new LinkedVariable<String>(variable, type);
+                break;
+            case FLOAT:
+                result = new LinkedVariable<Float>(variable, type);
+                break;
+            case DOUBLE:
+                result = new LinkedVariable<Double>(variable, type);
+                break;
+            case INTEGER:
+                result = new LinkedVariable<Integer>(variable, type);
+                break;
+            default: throw new InternalException("");
+        }
+        script.getClassVariables().put(name, result);
     }
 }

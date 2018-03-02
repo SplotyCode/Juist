@@ -14,7 +14,7 @@ public class NullValueReader extends TokenizeReader {
   @Override    
   public void handleChar(Tokenizer tokenizer) throws UnexpectedCharException {
     if(tokenizer.isNextSkip("null")){
-        close(tokenizer, new VariableValueToken<String>(VariableValueToken.VariableType.NULL, null));
+        close(tokenizer, new VariableValueToken(VariableValueToken.VariableType.NULL, null));
     }
   }
   

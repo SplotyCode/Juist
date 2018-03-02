@@ -18,7 +18,7 @@ public class VariableValueReader extends TokenizeReader {
             if(ListUtil.containsArray(tokenizer.getcChar(), VALIDCHARS)){
                 name += tokenizer.getcChar();
             }else {
-                close(tokenizer, new VariableValueToken<String>(VariableValueToken.VariableType.VARIABLE, name));
+                close(tokenizer, new VariableValueToken(VariableValueToken.VariableType.VARIABLE, name));
             }
         }else if(ListUtil.containsArray(tokenizer.getcChar(), VALIDCHARS)){
             setCancelOthers(true);

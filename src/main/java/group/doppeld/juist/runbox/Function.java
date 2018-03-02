@@ -1,6 +1,7 @@
 package group.doppeld.juist.runbox;
 
 import group.doppeld.juist.exeptions.InvalidTypeExeption;
+import group.doppeld.juist.exeptions.MissingReturnException;
 import group.doppeld.juist.runbox.variable.Variable;
 
 import java.util.ArrayList;
@@ -25,8 +26,8 @@ public class Function {
         script.getFunctionVariables().put(callID, localVariables);
         //TODO get returned value
         for(Statement statement : statements){
-            statement.run(script, callID);
-            if(returned != null)return returned
+            statement.run(script, callID, this);
+            if(returned != null)return returned;
             
             
         }

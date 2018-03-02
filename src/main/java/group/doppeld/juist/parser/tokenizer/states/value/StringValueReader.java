@@ -16,7 +16,7 @@ public class StringValueReader extends TokenizeReader {
             if(tokenizer.getcChar() == '\\') locket = true;
             else if(tokenizer.getcChar() == '"' && !locket) {
                 setCancelOthers(false);
-                close(tokenizer, new VariableValueToken<>(VariableValueToken.VariableType.STRING, string));
+                close(tokenizer, new VariableValueToken(VariableValueToken.VariableType.STRING, string));
                 string = "";
             } else {
                 locket = false;

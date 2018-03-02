@@ -3,10 +3,7 @@ package group.doppeld.juist.parser.tokenizer;
 import group.doppeld.juist.parser.tokenizer.states.*;
 import group.doppeld.juist.parser.tokenizer.states.statements.FunctionCallStatementReader;
 import group.doppeld.juist.parser.tokenizer.states.statements.ReturnStatementReader;
-import group.doppeld.juist.parser.tokenizer.states.value.LastValueReader;
-import group.doppeld.juist.parser.tokenizer.states.value.NumberReader;
-import group.doppeld.juist.parser.tokenizer.states.value.StringValueReader;
-import group.doppeld.juist.parser.tokenizer.states.value.VariableValueReader;
+import group.doppeld.juist.parser.tokenizer.states.value.*;
 
 public final class TokenizeConstants {
 

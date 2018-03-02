@@ -45,16 +45,16 @@ public class NumberReader extends TokenizeReader {
                 }
                 if(tokenizer.next() == ';'){
                     setCancelOthers(false);
-                    close(tokenizer, new VariableValueToken<>(getVariableTypebyNumber(content, Character.MIN_VALUE), content));
+                    close(tokenizer, new VariableValueToken(getVariableTypebyNumber(content, Character.MIN_VALUE), content));
                     content = "";
                 }
             } else if(ListUtil.containsArray(tokenizer.getcChar(), endChars)) {
                 setCancelOthers(false);
-                close(tokenizer, new VariableValueToken<>(getVariableTypebyNumber(content, tokenizer.getcChar()), content));
+                close(tokenizer, new VariableValueToken(getVariableTypebyNumber(content, tokenizer.getcChar()), content));
                 content = "";
             }else{
                 setCancelOthers(false);
-                close(tokenizer, new VariableValueToken<>(getVariableTypebyNumber(content, Character.MIN_VALUE), content));
+                close(tokenizer, new VariableValueToken(getVariableTypebyNumber(content, Character.MIN_VALUE), content));
                 content = "";
             }
         }else if(ListUtil.containsArray(tokenizer.getcChar(), startChars)){

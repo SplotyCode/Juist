@@ -7,7 +7,6 @@ import group.doppeld.juist.parser.tokenizer.TokenizeStates;
 import group.doppeld.juist.parser.tokenizer.Tokenizer;
 import group.doppeld.juist.parser.tokenizer.tokens.VariableValueToken;
 import group.doppeld.juist.parser.tokenizer.tokens.statements.ReturnStatementToken;
-import group.doppeld.juist.runbox.Statement;
 import group.doppeld.juist.util.CharUtil;
 
 public class ReturnStatementReader extends TokenizeReader {
@@ -20,10 +19,10 @@ public class ReturnStatementReader extends TokenizeReader {
             if(!CharUtil.isWhitespace(tokenizer.next())) {
                 //System.out.println("cur2" + tokenizer.next(0));
                 changeValue(tokenizer);
-            }else if(!tokenizer.next(0) == ';'){
+            }else if(tokenizer.next(0) == ';'){
                     setCancelOthers(false);
                     tokenizer.setState(tokenizer.getBefore());
-                    TokenizeConstants.IN_SOURCE_READER.statements.add(new ReturnStatementToken(new VariableValueToken<String>(VariableValueToken.VOID, null));
+                    TokenizeConstants.IN_SOURCE_READER.statements.add(new ReturnStatementToken(new VariableValueToken(VariableValueToken.VariableType.VOID, null)));
             }
         }else if(tokenizer.isNextSkip("return ")){
             setCancelOthers(true);
@@ -31,16 +30,15 @@ public class ReturnStatementReader extends TokenizeReader {
             if(!CharUtil.isWhitespace(tokenizer.next(0))) {
                 tokenizer.reHandleChar();
                 changeValue(tokenizer);
-            }else if(!tokenizer.next(0) == ';'){
+            }else if(tokenizer.next(0) == ';'){
                     setCancelOthers(false);
                     tokenizer.setState(tokenizer.getBefore());
-                    TokenizeConstants.IN_SOURCE_READER.statements.add(new ReturnStatementToken(new VariableValueToken<String>(VariableValueToken.VOID, null));
+                    TokenizeConstants.IN_SOURCE_READER.statements.add(new ReturnStatementToken(new VariableValueToken(VariableValueToken.VariableType.VOID, null)));
             }
         }
     }
     
     private void changeValue(Tokenizer tokenizer) throws UnexpectedCharException {
-        VariableValueToken value = null;
         //System.out.println(tokenizer.getcChar());
         setCancelOthers(false);
         before = tokenizer.getState();
@@ -49,13 +47,11 @@ public class ReturnStatementReader extends TokenizeReader {
                 tokenizer.setState(TokenizeStates.SOURCE);
                 setCancelOthers(true);
                 setIgnoreWhitespace(true);
-                value = (VariableValueToken) data[0];
                 if(tokenizer.getcChar() == ';'){
                     setCancelOthers(false);
                     setIgnoreWhitespace(false);
                     tokenizer.setState(before);
-                    TokenizeConstants.IN_SOURCE_READER.statements.add(new ReturnStatementToken(value));
-                    value = null;
+                    TokenizeConstants.IN_SOURCE_READER.statements.add(new ReturnStatementToken((VariableValueToken) data[0]));
                     before = null;
                 }else throw new UnexpectedCharException(tokenizer, "Expected ';' or whitespace");
             });

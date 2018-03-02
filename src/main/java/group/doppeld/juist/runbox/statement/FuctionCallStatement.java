@@ -22,7 +22,7 @@ public class FuctionCallStatement extends Statement {
     }
 
     @Override
-    public void run(Script script, long currentCall) {
+    public void run(Script script, long currentCall, Function function) {
         ArrayList<Variable> variables = new ArrayList<>();
         int i = 0;
         for(Variable variable : new ArrayList<>(this.variables)){
