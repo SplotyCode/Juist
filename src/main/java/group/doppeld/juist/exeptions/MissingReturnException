@@ -1,17 +1,17 @@
 package group.doppeld.juist.exeptions;
 
-public class FileLoadException extends SyntaxException {    
+public class MissingReturnException extends SyntaxException {    
 
-    public FileLoadException(){}    
+    public MissingReturnException(){}    
     
-    public FileLoadException(String message){        
+    public MissingReturnException(String message){        
         super(message);    
     }
     
-    public FileLoadException(String message, Throwable throwable) {        
+    public MissingReturnException(String message, Throwable throwable) {        
         super(message, throwable);    
     }    
-    public FileLoadException(Throwable throwable) {        
+    public MissingReturnException(Throwable throwable) {        
         super(throwable);    
     }
 }
