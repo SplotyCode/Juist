@@ -20,6 +20,10 @@ public class ReturnStatementReader extends TokenizeReader {
             if(!CharUtil.isWhitespace(tokenizer.next())) {
                 //System.out.println("cur2" + tokenizer.next(0));
                 changeValue(tokenizer);
+            }else if(!tokenizer.next(0) == ';'){
+                    setCancelOthers(false);
+                    tokenizer.setState(tokenizer.getBefore());
+                    TokenizeConstants.IN_SOURCE_READER.statements.add(new ReturnStatementToken(new VariableValueToken<String>(VariableValueToken.VOID, null));
             }
         }else if(tokenizer.isNextSkip("return ")){
             setCancelOthers(true);
@@ -29,17 +33,14 @@ public class ReturnStatementReader extends TokenizeReader {
                 changeValue(tokenizer);
             }else if(!tokenizer.next(0) == ';'){
                     setCancelOthers(false);
-                    tokenizer.setState(before);
-                    TokenizeConstants.IN_SOURCE_READER.statements.add(new ReturnStatementToken(value));
-                    value = null;
-                    before = null;
-                
+                    tokenizer.setState(tokenizer.getBefore());
+                    TokenizeConstants.IN_SOURCE_READER.statements.add(new ReturnStatementToken(new VariableValueToken<String>(VariableValueToken.VOID, null));
             }
-            
         }
     }
     
     private void changeValue(Tokenizer tokenizer) throws UnexpectedCharException {
+        VariableValueToken value = null;
         //System.out.println(tokenizer.getcChar());
         setCancelOthers(false);
         before = tokenizer.getState();
