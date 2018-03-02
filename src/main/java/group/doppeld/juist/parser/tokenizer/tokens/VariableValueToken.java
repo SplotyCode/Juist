@@ -12,7 +12,8 @@ public class VariableValueToken<T> extends Token {
         LONG,
         INTEGER,
         SHORT,
-        VARIABLE
+        VARIABLE,
+        NULL
 
     }
 
