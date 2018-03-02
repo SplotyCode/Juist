@@ -1,9 +1,9 @@
 package group.doppeld.juist.parser.tokenizer;
 
-import group.doppeld.juist.parser.tokenizer.states.*;
-import group.doppeld.juist.parser.tokenizer.states.statements.FunctionCallStatementReader;
-import group.doppeld.juist.parser.tokenizer.states.statements.ReturnStatementReader;
-import group.doppeld.juist.parser.tokenizer.states.value.*;
+import group.doppeld.juist.parser.tokenizer.readers.*;
+import group.doppeld.juist.parser.tokenizer.readers.statements.FunctionCallStatementReader;
+import group.doppeld.juist.parser.tokenizer.readers.statements.ReturnStatementReader;
+import group.doppeld.juist.parser.tokenizer.readers.value.*;
 
 public final class TokenizeConstants {
 

@@ -34,7 +34,7 @@ public class JuistFileLoader {
                     loader.readFile(archive.getMain());
                     content = loader.getContent();
                 } catch (IOException ex) {
-                    throw new FileLoadException("Error Reading File!", ex);
+                    throw new FileLoadException("Error Reading File!",ex);
                 }
                 break;
             }default:

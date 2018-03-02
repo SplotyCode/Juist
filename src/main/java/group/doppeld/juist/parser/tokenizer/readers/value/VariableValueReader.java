@@ -1,4 +1,4 @@
-package group.doppeld.juist.parser.tokenizer.states.value;
+package group.doppeld.juist.parser.tokenizer.readers.value;
 
 import group.doppeld.juist.exeptions.UnexpectedCharException;
 import group.doppeld.juist.parser.tokenizer.TokenizeReader;
