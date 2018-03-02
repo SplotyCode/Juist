@@ -10,8 +10,11 @@ import group.doppeld.juist.parser.tokenizer.Token;
 import group.doppeld.juist.parser.tokenizer.Tokenizer;
 import group.doppeld.juist.parser.tokenizer.tokens.FunctionToken;
 import group.doppeld.juist.parser.tokenizer.tokens.VariableToken;
+import group.doppeld.juist.runbox.Application;
 import group.doppeld.juist.runbox.Script;
 import group.doppeld.juist.util.StringUtil;
+
+import java.util.ArrayList;
 
 //Singelton
 public class Parser {
@@ -26,8 +29,9 @@ public class Parser {
         tokenizer.process();
         Juist.getInstance().log("");
         Juist.getInstance().log("Tokenizer finished in " + (System.currentTimeMillis()-tokenizeStart) + "ms! And generated " + tokenizer.getTokens().size() + " tokens.");
-
-
+        Script main = tokenizerToScript(tokenizer);
+        Application application = new Application(main, new ArrayList<>());
+        application.start();
     }
 
     private Script tokenizerToScript(final Tokenizer tokenizer) throws SyntaxException {

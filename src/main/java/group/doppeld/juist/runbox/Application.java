@@ -2,12 +2,12 @@ package group.doppeld.juist.runbox;
 
 import java.util.ArrayList;
 
-public class Appliecation {
+public class Application {
 
     private Script main;
     private ArrayList<Script> other;
 
-    public Appliecation(Script main, ArrayList<Script> other) {
+    public Application(Script main, ArrayList<Script> other) {
         this.main = main;
         this.other = other;
     }
