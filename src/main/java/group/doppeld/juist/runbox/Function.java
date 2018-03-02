@@ -26,7 +26,12 @@ public class Function {
         //TODO get returned value
         for(Statement statement : statements){
             statement.run(script, callID);
-            if(returned != null)return returned;
+            if(returned != null)return returned
+            
+            
+        }
+        if(returnValue != null){
+            throw new MissingReturnException("You forgot return so please add it to your code or this message will come again");
         }
         return returned;
     }
