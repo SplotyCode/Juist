@@ -1,9 +1,8 @@
-,
-VOIDpackage group.doppeld.juist.parser.tokenizer.tokens;
+package group.doppeld.juist.parser.tokenizer.tokens;
 
 import group.doppeld.juist.parser.tokenizer.Token;
 
-public class VariableValueToken<T> extends Token {
+public class VariableValueToken extends Token {
 
     public enum VariableType {
 
@@ -19,14 +18,14 @@ public class VariableValueToken<T> extends Token {
     }
 
     private final VariableType type;
-    private final T content;
+    private final String content;
 
-    public VariableValueToken(VariableType type, T content) {
+    public VariableValueToken(VariableType type, String content) {
         this.type = type;
         this.content = content;
     }
 
-    public T getContent() {
+    public String getContent() {
         return content;
     }
 
