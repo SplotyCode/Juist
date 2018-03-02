@@ -36,7 +36,7 @@ public class Parser {
             if(token instanceof VariableToken){
                 classVariableParser.parse(script, (VariableToken) token);
             }else if(token instanceof FunctionToken){
-
+                functionParser.parse(script, (FunctionToken) token);
             }else throw new OperationNotSupportedExeption("Invalid Token '" + token.getClass().getSimpleName() + "'!");
         }
         return script;
