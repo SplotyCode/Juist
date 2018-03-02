@@ -12,8 +12,10 @@ public class Function {
     private ArrayList<Statement> statements;
     private ArrayList<Parameter> parameters;
     private VariableType returnValue;
+    private Variable returned;
 
     public Variable run(Script script, long callID, Variable... variables) {
+        returned = null;
         HashMap<String, Variable> localVariables = new HashMap<>();
         for(int i = 0;i<variables.length;i++) {
             if(variables[i].getType() == parameters.get(i).getType())
@@ -22,9 +24,11 @@ public class Function {
         }
         script.getFunctionVariables().put(callID, localVariables);
         //TODO get returned value
-        for(Statement statement : statements)
+        for(Statement statement : statements){
             statement.run(script, callID);
-        return null;
+            if(returned != null)return returned;
+        }
+        return returned;
     }
 
     public Function(String name, ArrayList<Statement> statements, ArrayList<Parameter> parameters, VariableType returnValue) {
