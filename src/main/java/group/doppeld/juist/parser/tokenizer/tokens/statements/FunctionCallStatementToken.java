@@ -3,11 +3,10 @@ package group.doppeld.juist.parser.tokenizer.tokens.statements;
 import group.doppeld.juist.parser.tokenParser.TokenParseHelper;
 import group.doppeld.juist.parser.tokenizer.tokens.StatementToken;
 import group.doppeld.juist.parser.tokenizer.tokens.VariableValueToken;
-import group.doppeld.juist.runbox.Function;
 import group.doppeld.juist.runbox.Script;
 import group.doppeld.juist.runbox.Statement;
 import group.doppeld.juist.runbox.VariableType;
-import group.doppeld.juist.runbox.statement.FuctionCallStatement;
+import group.doppeld.juist.runbox.statement.FunctionCallStatement;
 import group.doppeld.juist.runbox.variable.SignalVariable;
 import group.doppeld.juist.runbox.variable.Variable;
 
@@ -51,11 +50,11 @@ public class FunctionCallStatementToken extends StatementToken {
                 i++;
                 continue;
             }
-            Variable variable = script.getClassVariablebyName((String) token.getContent());
+            Variable variable = script.getClassVariablebyName(token.getContent());
             if(variable != null) variables.add(variable);
-            else new SignalVariable<String>((String) token.getContent());
+            else new SignalVariable(token.getContent());
             i++;
         }
-        return new FuctionCallStatement(script, script.getFunction(getName(), types, true), variables);
+        return new FunctionCallStatement(script.getFunction(getName(), types, true), variables);
     }
 }

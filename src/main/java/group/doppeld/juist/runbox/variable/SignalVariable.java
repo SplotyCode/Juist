@@ -2,7 +2,7 @@ package group.doppeld.juist.runbox.variable;
 
 import group.doppeld.juist.exeptions.InternalException;
 
-public class SignalVariable<T> extends Variable<T> {
+public class SignalVariable extends Variable<Object> {
 
     private String placeholder;
 
@@ -16,7 +16,7 @@ public class SignalVariable<T> extends Variable<T> {
     }
 
     @Override
-    public T getValue() {
+    public Object getValue() {
         throw new InternalException("Only for Singals!");
     }
 

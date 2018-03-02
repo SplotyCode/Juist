@@ -3,6 +3,7 @@ package group.doppeld.juist.runbox;
 import group.doppeld.juist.exeptions.InvalidTypeExeption;
 import group.doppeld.juist.exeptions.MissingReturnException;
 import group.doppeld.juist.runbox.variable.Variable;
+import group.doppeld.juist.runbox.variable.VoidVariable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,14 +28,15 @@ public class Function {
         //TODO get returned value
         for(Statement statement : statements){
             statement.run(script, callID, this);
-            if(returned != null)return returned;
-            
-            
+            if(returned != null){
+                if(returned.getType() != returnValue) throw new InvalidTypeExeption("Wrong Return type for '" + name + "'!");
+                return returned;
+            }
         }
         if(returnValue != null){
             throw new MissingReturnException("You forgot return so please add it to your code or this message will come again");
         }
-        return returned;
+        return new VoidVariable();
     }
 
     public Function(String name, ArrayList<Statement> statements, ArrayList<Parameter> parameters, VariableType returnValue) {
@@ -74,5 +76,13 @@ public class Function {
 
     public void setReturnValue(VariableType returnValue) {
         this.returnValue = returnValue;
+    }
+
+    public Variable getReturned() {
+        return returned;
+    }
+
+    public void setReturned(Variable returned) {
+        this.returned = returned;
     }
 }

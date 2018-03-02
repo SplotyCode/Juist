@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 //TODO
-public class FuctionCallStatement extends Statement {
+public class FunctionCallStatement extends Statement {
 
     private Function function;
     private ArrayList<Variable> variables;
 
 
-    public FuctionCallStatement(Script script, Function function, ArrayList<Variable> variables) {
+    public FunctionCallStatement(Function function, ArrayList<Variable> variables) {
         this.function = function;
         this.variables = variables;
     }
