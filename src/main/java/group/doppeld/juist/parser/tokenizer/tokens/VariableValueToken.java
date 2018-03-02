@@ -1,4 +1,5 @@
-package group.doppeld.juist.parser.tokenizer.tokens;
+,
+VOIDpackage group.doppeld.juist.parser.tokenizer.tokens;
 
 import group.doppeld.juist.parser.tokenizer.Token;
 
@@ -13,8 +14,8 @@ public class VariableValueToken<T> extends Token {
         INTEGER,
         SHORT,
         VARIABLE,
-        NULL
-
+        NULL,
+        VOID
     }
 
     private final VariableType type;
