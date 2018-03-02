@@ -1,0 +1,17 @@
+package group.doppeld.juist.exeptions;
+
+public class FileLoadException extends SyntaxException {    
+
+    public FileLoadException(){}    
+    
+    public FileLoadException(String message){        
+        super(message);    
+    }
+    
+    public FileLoadException(String message, Throwable throwable) {        
+        super(message, throwable);    
+    }    
+    public FileLoadException(Throwable throwable) {        
+        super(throwable);    
+    }
+}
