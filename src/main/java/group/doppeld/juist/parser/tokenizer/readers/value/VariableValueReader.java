@@ -22,7 +22,6 @@ public class VariableValueReader extends TokenizeReader {
 
     enum ValueStates {
         READINGVALUE,
-        VALUEISMETHOD,
         SETPARAMETER,
         COMMASPLIT,
         END
@@ -41,20 +40,16 @@ public class VariableValueReader extends TokenizeReader {
                         name += tokenizer.getcChar();
                     } else {
                         setIgnoreWhitespace(true);
-                        valueStates = ValueStates.VALUEISMETHOD;
+                        if(tokenizer.getcChar() == '(') {
+                            valueStates = ValueStates.SETPARAMETER;
+                        }else {
+                            tokenizer.reHandleChar();
+                            setCancelOthers(false);
+                            setIgnoreWhitespace(false);
+                            close(tokenizer, new VariableValueToken(VariableValueToken.VariableType.VARIABLE, name));
+                        }
                     }
                     break;
-
-
-               case VALUEISMETHOD:
-                   if(tokenizer.getcChar() == '(') {
-                       valueStates = ValueStates.SETPARAMETER;
-                   }else {
-                       close(tokenizer, new VariableValueToken(VariableValueToken.VariableType.VARIABLE, name));
-                       setCancelOthers(false);
-                       setIgnoreWhitespace(false);
-                   }
-                   break;
                 case SETPARAMETER:
                     if(tokenizer.getcChar() == ')'){
                         valueStates = ValueStates.END;
@@ -80,6 +75,7 @@ public class VariableValueReader extends TokenizeReader {
                     }
                     break;
                 case END:
+                    tokenizer.reHandleChar();
                     lastCloseListener.onClose(new Object[] { new MethodValueToken(VariableValueToken.VariableType.METHOD,name,parameters)});
                     parameters.clear();
                     name = "";
