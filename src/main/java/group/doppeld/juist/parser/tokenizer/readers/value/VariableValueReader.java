@@ -47,7 +47,7 @@ public class VariableValueReader extends TokenizeReader {
 
 
                case VALUEISMETHOD:
-                   if(tokenizer.getcChar() == '('){
+                   if(tokenizer.getcChar() == '(') {
                        valueStates = ValueStates.SETPARAMETER;
                    }else {
                        close(tokenizer, new VariableValueToken(VariableValueToken.VariableType.VARIABLE, name));
