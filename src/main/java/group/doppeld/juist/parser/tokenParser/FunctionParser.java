@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FunctionParser extends TokenParser {
+
     public FunctionParser(Parser parser) {
         super(parser);
     }

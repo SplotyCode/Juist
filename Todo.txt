@@ -5,3 +5,6 @@ neue value:Method call
 Value logische operatoren, mathe
 variablen müssen verändert werden können
 variablen in methoden erstellen kann
+
+//change parser steps to: Function-Head, Variables, Function-Body, Function init
+functioncallstetment with generics

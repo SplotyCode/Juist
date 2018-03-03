@@ -15,7 +15,6 @@ public class FunctionCallStatement extends Statement {
     private Function function;
     private ArrayList<Variable> variables;
 
-
     public FunctionCallStatement(Function function, ArrayList<Variable> variables) {
         this.function = function;
         this.variables = variables;
@@ -30,7 +29,7 @@ public class FunctionCallStatement extends Statement {
                 variables.set(i, script.getFunctionVarbyName(currentCall, ((SignalVariable) variable).getPlaceholder(), true));
             i++;
         }
-        function.run(script, script.getNewCallID(), variables.toArray(new Variable[variables.size()]));
+        this.function.run(script, script.getNewCallID(), variables.toArray(new Variable[variables.size()]));
     }
 
     public Function getFunction() {

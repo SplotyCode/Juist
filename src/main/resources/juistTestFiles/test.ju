@@ -1,0 +1,17 @@
+
+/*
+hello
+*/
+
+#adasdasd
+
+val Examplethink : Int = 123;
+
+fun getNiceText() : String {
+    return Examplethink;
+
+}
+fun abc(x: Int, y: Int, scale: Float): String {
+    x = "a";
+    return x;
+}

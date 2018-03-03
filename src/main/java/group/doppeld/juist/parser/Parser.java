@@ -36,12 +36,16 @@ public class Parser {
 
     private Script tokenizerToScript(final Tokenizer tokenizer) throws SyntaxException {
         Script script = new Script();
+        ArrayList<VariableToken> classVars = new ArrayList<>();
         for(Token token : tokenizer.getTokens()){
             if(token instanceof VariableToken){
-                classVariableParser.parse(script, (VariableToken) token);
+                classVars.add((VariableToken) token);
             }else if(token instanceof FunctionToken){
                 functionParser.parse(script, (FunctionToken) token);
             }else throw new OperationNotSupportedExeption("Invalid Token '" + token.getClass().getSimpleName() + "'!");
+        }
+        for(VariableToken var : classVars){
+            classVariableParser.parse(script, var);
         }
         return script;
     }
