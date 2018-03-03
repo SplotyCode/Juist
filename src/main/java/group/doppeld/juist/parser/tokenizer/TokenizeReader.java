@@ -32,9 +32,12 @@ public abstract class TokenizeReader {
         }
     }
 
+    public CloseListener getCurrentCloseListener(Tokenizer tokenizer){
+        if(tokenizer.getState().getFirstOnCloseListener() == null) return onClose;
+        return tokenizer.getState().getFirstOnCloseListener();
+    }
+
     public abstract void handleChar(Tokenizer tokenizer) throws UnexpectedCharException;
-
-
 
 
     public boolean isCancelOthers(){

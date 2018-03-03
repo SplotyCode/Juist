@@ -1,21 +1,32 @@
 package group.doppeld.juist.parser.tokenizer.readers.value;
 
 import group.doppeld.juist.exeptions.UnexpectedCharException;
+import group.doppeld.juist.parser.tokenizer.CloseListener;
 import group.doppeld.juist.parser.tokenizer.TokenizeReader;
+import group.doppeld.juist.parser.tokenizer.TokenizeStates;
 import group.doppeld.juist.parser.tokenizer.Tokenizer;
+import group.doppeld.juist.parser.tokenizer.readers.statements.FunctionCallStatementReader;
+import group.doppeld.juist.parser.tokenizer.tokens.MethodValueToken;
 import group.doppeld.juist.parser.tokenizer.tokens.VariableValueToken;
+import group.doppeld.juist.runbox.Parameter;
 import group.doppeld.juist.util.ListUtil;
+
+import java.util.ArrayList;
 
 public class VariableValueReader extends TokenizeReader {
 
     private String name;
-    private String Methodname;
+    private CloseListener lastCloseListener = null;
+    private ArrayList<VariableValueToken> parameters = new ArrayList<>();
 
-    private final MethodCallReader methodCallReader = new MethodCallReader();
 
     enum ValueStates {
         READINGVALUE,
-        VALUEISMETHOD
+        VALUEISMETHOD,
+        SETPARAMETER,
+        COMMASPLIT,
+        END
+
     }
 
     private ValueStates valueStates;
@@ -36,17 +47,51 @@ public class VariableValueReader extends TokenizeReader {
 
 
                case VALUEISMETHOD:
-                   if(tokenizer.getcChar() == '('){
-
-
+                   if(tokenizer.getcChar() == '('){
+                       valueStates = ValueStates.SETPARAMETER;
                    }else {
-
-
+                       close(tokenizer, new VariableValueToken(VariableValueToken.VariableType.VARIABLE, name));
+                       setCancelOthers(false);
+                       setIgnoreWhitespace(false);
                    }
                    break;
+                case SETPARAMETER:
+                    if(tokenizer.getcChar() == ')'){
+                        valueStates = ValueStates.END;
+                    }else {
+                        if(lastCloseListener == null)
+                            lastCloseListener = getCurrentCloseListener(tokenizer);
+                        TokenizeStates.VALUE.setFirstOnCloseListener((data) -> {
+                            tokenizer.setState(tokenizer.getBefore());
+                            setCancelOthers(true);
+                            setIgnoreWhitespace(true);
+                            valueStates = ValueStates.COMMASPLIT;
+                            parameters.add((VariableValueToken) data[0]);
+                        });
+                    }
+                    break;
+                case COMMASPLIT:
+                    if(tokenizer.getcChar() == ','){
+                        valueStates = ValueStates.SETPARAMETER;
+
+                    }else if(tokenizer.getcChar() == ')'){
+                        valueStates = ValueStates.END;
+
+                    }
+                    break;
+                case END:
+                    lastCloseListener.onClose(new Object[] { new MethodValueToken(VariableValueToken.VariableType.METHOD,name,parameters)});
+                    parameters.clear();
+                    name = "";
+                    setIgnoreWhitespace(false);
+                    setCancelOthers(false);
+                    break;
+
+
            }
         }else {
             if(ListUtil.containsArray(tokenizer.getcChar(), VALIDCHARS)) {
+                lastCloseListener = null;
                 setCancelOthers(true);
                 name = tokenizer.getcChar()+"";
                 valueStates = ValueStates.READINGVALUE;

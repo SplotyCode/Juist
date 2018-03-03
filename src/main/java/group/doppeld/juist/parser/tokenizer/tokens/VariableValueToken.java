@@ -14,7 +14,8 @@ public class VariableValueToken extends Token {
         SHORT,
         VARIABLE,
         NULL,
-        VOID
+        VOID,
+        METHOD
     }
 
     private final VariableType type;
