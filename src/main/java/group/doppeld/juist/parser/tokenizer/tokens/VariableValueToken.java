@@ -15,6 +15,7 @@ public class VariableValueToken extends Token {
         VARIABLE,
         NULL,
         VOID,
+        BOOLEAN,
         METHOD
     }
 
