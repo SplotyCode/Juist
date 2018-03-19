@@ -110,7 +110,7 @@ public class Tokenizer {
         System.out.println("skip" + str.length());
         if(str.charAt(0) == '\n') newlines--;
         line += newlines;
-        index += str.length()-1;
+        index += str.length();
         //System.out.println("skipped " + (str.length()-1) + " now at " + next(0));
         if(update) cChar = source.charAt(index);
         return true;

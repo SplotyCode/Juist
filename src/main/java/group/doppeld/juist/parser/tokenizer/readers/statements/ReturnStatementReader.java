@@ -26,7 +26,7 @@ public class ReturnStatementReader extends TokenizeReader {
             }
         }else if(tokenizer.isNextSkip("return ")){
             setCancelOthers(true);
-            //System.out.println("cur" + tokenizer.next(0));
+            System.out.println("cur" + tokenizer.next(0));
             if(!CharUtil.isWhitespace(tokenizer.next(0))) {
                 tokenizer.reHandleChar();
                 changeValue(tokenizer);
@@ -47,6 +47,7 @@ public class ReturnStatementReader extends TokenizeReader {
                 tokenizer.setState(TokenizeStates.SOURCE);
                 setCancelOthers(true);
                 setIgnoreWhitespace(true);
+                System.out.println(tokenizer.getcChar());
                 if(tokenizer.getcChar() == ';'){
                     setCancelOthers(false);
                     setIgnoreWhitespace(false);

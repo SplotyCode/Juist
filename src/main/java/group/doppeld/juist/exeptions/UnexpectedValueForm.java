@@ -9,13 +9,10 @@ public class UnexpectedValueForm extends SyntaxException {
 
     public UnexpectedValueForm(Tokenizer tokenizer){
         super("Values dont fit together" + tokenizer.getcChar() + "at Line" + tokenizer.getLine());
-            this.tokenizer = tokenizer;
-        }
+        this.tokenizer = tokenizer;
     }
     public UnexpectedValueForm(Tokenizer tokenizer, String message){
         super(message + "|" + "Values dont fit together" + tokenizer.getcChar() + "at Line" + tokenizer.getLine());
-            this.tokenizer = tokenizer;
-        }
-
+        this.tokenizer = tokenizer;
     }
 }

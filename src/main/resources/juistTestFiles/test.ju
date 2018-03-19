@@ -12,6 +12,6 @@ fun getNiceText() : String {
 
 }
 fun abc(x: Int, y: Int, scale: Float): String {
-    x = "a";
+    #x = "a";
     return x;
 }

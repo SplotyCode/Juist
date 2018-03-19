@@ -5,10 +5,8 @@ import group.doppeld.juist.parser.tokenizer.CloseListener;
 import group.doppeld.juist.parser.tokenizer.TokenizeReader;
 import group.doppeld.juist.parser.tokenizer.TokenizeStates;
 import group.doppeld.juist.parser.tokenizer.Tokenizer;
-import group.doppeld.juist.parser.tokenizer.readers.statements.FunctionCallStatementReader;
 import group.doppeld.juist.parser.tokenizer.tokens.MethodValueToken;
 import group.doppeld.juist.parser.tokenizer.tokens.VariableValueToken;
-import group.doppeld.juist.runbox.Parameter;
 import group.doppeld.juist.util.ListUtil;
 
 import java.util.ArrayList;
@@ -28,11 +26,12 @@ public class VariableValueReader extends TokenizeReader {
 
     }
 
-    private ValueStates valueStates;
+    private ValueStates valueStates = ValueStates.READINGVALUE;
     private final char[] VALIDCHARS = "abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
 
     @Override
     public void handleChar(Tokenizer tokenizer) throws UnexpectedCharException {
+        System.out.println(tokenizer.getcChar() + " | " + valueStates.name());
         if (isCancelOthers()) {
             switch (valueStates) {
                 case READINGVALUE:
@@ -43,7 +42,6 @@ public class VariableValueReader extends TokenizeReader {
                         if(tokenizer.getcChar() == '(') {
                             valueStates = ValueStates.SETPARAMETER;
                         }else {
-                            tokenizer.reHandleChar();
                             setCancelOthers(false);
                             setIgnoreWhitespace(false);
                             close(tokenizer, new VariableValueToken(VariableValueToken.VariableType.VARIABLE, name));
@@ -82,8 +80,6 @@ public class VariableValueReader extends TokenizeReader {
                     setIgnoreWhitespace(false);
                     setCancelOthers(false);
                     break;
-
-
            }
         }else {
             if(ListUtil.containsArray(tokenizer.getcChar(), VALIDCHARS)) {
