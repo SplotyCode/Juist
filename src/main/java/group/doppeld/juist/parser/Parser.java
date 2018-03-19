@@ -6,11 +6,13 @@ import group.doppeld.juist.exeptions.SyntaxException;
 import group.doppeld.juist.fileload.JuistFileLoader;
 import group.doppeld.juist.parser.tokenParser.ClassVariableParser;
 import group.doppeld.juist.parser.tokenParser.FunctionParser;
+import group.doppeld.juist.parser.tokenParser.PartParseManager;
 import group.doppeld.juist.parser.tokenizer.Token;
 import group.doppeld.juist.parser.tokenizer.Tokenizer;
 import group.doppeld.juist.parser.tokenizer.tokens.FunctionToken;
 import group.doppeld.juist.parser.tokenizer.tokens.VariableToken;
 import group.doppeld.juist.runbox.Application;
+import group.doppeld.juist.runbox.Function;
 import group.doppeld.juist.runbox.Script;
 import group.doppeld.juist.util.StringUtil;
 
@@ -19,8 +21,9 @@ import java.util.ArrayList;
 //Singelton
 public class Parser {
 
-    private final ClassVariableParser classVariableParser = new ClassVariableParser(this);
-    private final FunctionParser functionParser = new FunctionParser(this);
+    //private final ClassVariableParser classVariableParser = new ClassVariableParser(this);
+    //private final FunctionParser functionParser = new FunctionParser(this);
+    private PartParseManager partParseManager = new PartParseManager();
 
     public void parse(JuistFileLoader loader){
         long tokenizeStart = System.currentTimeMillis();
@@ -37,16 +40,20 @@ public class Parser {
     private Script tokenizerToScript(final Tokenizer tokenizer) throws SyntaxException {
         Script script = new Script();
         ArrayList<VariableToken> classVars = new ArrayList<>();
+
         for(Token token : tokenizer.getTokens()){
             if(token instanceof VariableToken){
                 classVars.add((VariableToken) token);
             }else if(token instanceof FunctionToken){
-                functionParser.parse(script, (FunctionToken) token);
+                partParseManager.process(script, token);
             }else throw new OperationNotSupportedExeption("Invalid Token '" + token.getClass().getSimpleName() + "'!");
         }
-        for(VariableToken var : classVars){
-            classVariableParser.parse(script, var);
+        for(VariableToken var : classVars)
+            partParseManager.process(script, var);
+        for(Function fun : script.getMethods()) {
+            //fun
         }
+
         return script;
     }
 
