@@ -1,26 +1,35 @@
-package group.doppeld.juist.parser.tokenParser;
+package group.doppeld.juist.parser.tokenParser.special;
 
 import group.doppeld.juist.exeptions.InternalException;
 import group.doppeld.juist.exeptions.InvalidTypeExeption;
 import group.doppeld.juist.exeptions.VariableAlreadyDefined;
 import group.doppeld.juist.exeptions.VariableNotFoundExeption;
-import group.doppeld.juist.parser.Parser;
+import group.doppeld.juist.parser.tokenParser.SpecialTokenParser;
+import group.doppeld.juist.parser.tokenParser.TokenParseHelper;
+import group.doppeld.juist.parser.tokenizer.Token;
 import group.doppeld.juist.parser.tokenizer.tokens.VariableToken;
 import group.doppeld.juist.parser.tokenizer.tokens.VariableValueToken;
 import group.doppeld.juist.runbox.Script;
 import group.doppeld.juist.runbox.VariableType;
 import group.doppeld.juist.runbox.variable.RealVariable;
+import group.doppeld.juist.runbox.variable.SignalVariable;
 import group.doppeld.juist.runbox.variable.Variable;
 
-public class ClassVariableParser extends TokenParser {
+public class ClassVariableParser extends SpecialTokenParser {
 
-    public ClassVariableParser(Parser parser) {
-        super(parser);
+    private VariableToken token;
+    private Script script;
+
+
+    @Override
+    public void preParse(Script script, Token rawToken) {
+        token = (VariableToken) rawToken;
+        this.script = script;
+        if(script.getClassVariables().containsKey(token.getName())) throw new VariableAlreadyDefined("'" + token.getName() + "' is already defined in class Variables!");
+        script.getClassVariables().put(token.getName(), new SignalVariable());
     }
 
-    public void parse(Script script, VariableToken token){
-        if(script.getClassVariables().containsKey(token.getName())) throw new VariableAlreadyDefined("'" + token.getName() + "' is already defined in class Variables!");
-
+    public void postLoad(){
         VariableValueToken valueToken = token.getValue();
         VariableType must = TokenParseHelper.getType(token.getType());
         VariableValueToken.VariableType hasRaw = valueToken.getType();
